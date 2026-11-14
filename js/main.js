@@ -447,40 +447,115 @@
   document.getElementById("yt-top").href = yt;
   document.getElementById("yt-channel").href = yt;
   document.getElementById("yt-sub").href = yt + "?sub_confirmation=1";
+  // Reels: karty na výšku 9:16 v karuselu přes celou šířku. Videa jsou na šířku – ukazuje se střed obrazu
+  // (náhled i přehrávač jsou oříznuté). Přehrávač (youtube-nocookie) se načte až po kliknutí.
   const vids = document.getElementById("videos");
-  (CFG.youtubeVideos || []).forEach((v, i) => {
+  let playingCard = null;
+  (CFG.youtubeVideos || []).forEach((v) => {
     const card = document.createElement("figure");
-    card.className = "vcard reveal" + (i === 0 ? " vcard--main" : "");
+    card.className = "reel";
     const scr = document.createElement("button");
     scr.type = "button";
-    scr.className = "vcard__screen";
-    scr.setAttribute("aria-label", v.title);
+    scr.className = "reel__screen";
+    scr.setAttribute("aria-label", t("play") + ": " + v.title);
     const img = document.createElement("img");
     img.loading = "lazy";
     img.alt = "";
-    img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.id) + (i === 0 ? "/maxresdefault.jpg" : "/hqdefault.jpg");
+    img.draggable = false;
+    img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.id) + "/maxresdefault.jpg";
     img.onerror = () => { img.onerror = null; img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.id) + "/hqdefault.jpg"; };
     const play = document.createElement("span");
-    play.className = "vcard__play";
-    scr.append(img, play);
-    scr.addEventListener("click", () => {
-      const f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0";
-      f.title = v.title;
-      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-      f.allowFullscreen = true;
-      scr.replaceWith(f);
-    });
+    play.className = "reel__play";
     const cap = document.createElement("figcaption");
     const link = document.createElement("a");
     link.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(v.id);
     link.target = "_blank";
     link.rel = "noopener";
     link.textContent = v.title;
+    link.draggable = false;
     cap.appendChild(link);
+    scr.append(img, play);
     card.append(scr, cap);
+    scr.addEventListener("click", () => {
+      if (dragMoved) return;
+      if (playingCard && playingCard !== card) stopReel(playingCard);
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0&playsinline=1";
+      f.title = v.title;
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      const box = document.createElement("div");
+      box.className = "reel__screen reel__screen--live";   // video na šířku zvětšené na výšku karty – střed obrazu
+      box.appendChild(f);
+      card.classList.add("is-playing");
+      card._screen = scr;
+      scr.replaceWith(box);
+      playingCard = card;
+      pauseAuto = true;
+    });
     vids.appendChild(card);
   });
+  function stopReel(card) {
+    const f = card.querySelector(".reel__screen--live");
+    if (f && card._screen) f.replaceWith(card._screen);
+    card.classList.remove("is-playing");
+    if (playingCard === card) playingCard = null;
+  }
+  // šipky, tažení myší, pomalé samo-posouvání (stojí při najetí, tažení a přehrávání)
+  const step = () => (vids.querySelector(".reel") || {}).offsetWidth + 18 || 300;
+  let holdUntil = 0;   // po šipce chvíli bez samo-posouvání (jinak by přerušilo plynulý posun)
+  const jump = (dir) => {
+    holdUntil = performance.now() + 4000;
+    let to = vids.scrollLeft + dir * step() * 2;
+    if (to > vids.scrollWidth - vids.clientWidth + 4) to = 0;
+    if (to < -4) to = vids.scrollWidth;
+    vids.scrollTo({ left: to, behavior: "smooth" });
+  };
+  document.getElementById("reels-prev").addEventListener("click", () => jump(-1));
+  document.getElementById("reels-next").addEventListener("click", () => jump(1));
+  let pauseAuto = false;
+  let hoverReels = false;
+  let dragX = null;
+  let dragStart = 0;
+  let dragMoved = false;
+  vids.addEventListener("mouseenter", () => { hoverReels = true; });
+  vids.addEventListener("mouseleave", () => { hoverReels = false; dragX = null; vids.classList.remove("is-drag"); });
+  vids.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse") return;   // dotyk posouvá prohlížeč sám
+    dragX = e.clientX;
+    dragStart = vids.scrollLeft;
+    dragMoved = false;
+  });
+  window.addEventListener("pointermove", (e) => {
+    if (dragX === null) return;
+    const dx = e.clientX - dragX;
+    if (Math.abs(dx) > 6) { dragMoved = true; vids.classList.add("is-drag"); }
+    if (dragMoved) vids.scrollLeft = dragStart - dx;
+  });
+  window.addEventListener("pointerup", () => {
+    if (dragX === null) return;
+    dragX = null;
+    vids.classList.remove("is-drag");
+    setTimeout(() => { dragMoved = false; }, 0);
+  });
+  vids.addEventListener("touchstart", () => { pauseAuto = true; }, { passive: true });
+  let autoAcc = 0;
+  let lastReel = performance.now();
+  function reelTick(now) {
+    const dt = Math.min(0.05, (now - lastReel) / 1000);
+    lastReel = now;
+    if (!reduced && !pauseAuto && !hoverReels && dragX === null && now > holdUntil) {
+      autoAcc += 28 * dt;   // px/s
+      if (autoAcc >= 1) {
+        const px = Math.floor(autoAcc);
+        autoAcc -= px;
+        if (vids.scrollLeft + vids.clientWidth >= vids.scrollWidth - 2) vids.scrollLeft = 0;
+        else vids.scrollLeft += px;
+      }
+    }
+    requestAnimationFrame(reelTick);
+  }
+  requestAnimationFrame(reelTick);
 
   // ------------------------------------------------------------------ poklady schované po stránce
   const LOOT = [
