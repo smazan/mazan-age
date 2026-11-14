@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mazan Age – a prehistoric platformer</title>
+<meta name="description" content="Mazan Age – a hand-made prehistoric platformer by a lifelong platformer fan. Coming by the end of 2026. Join the list and support development.">
+<meta property="og:title" content="Mazan Age – a prehistoric platformer">
+<meta property="og:description" content="Made by a platformer fan. Coming by the end of 2026.">
+<meta property="og:image" content="assets/hero_bg.jpg">
+<link rel="icon" href="assets/coin_gold.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar__logo" href="#top"><img src="assets/logo.webp" alt="Mazan Age"></a>
+  <nav class="topbar__nav">
+    <a href="#story" data-i18n="nav_story">Story</a>
+    <a href="#monsters" data-i18n="nav_monsters">Monsters</a>
+    <a href="#signup" data-i18n="nav_signup">Get notified</a>
+    <a href="#support" class="topbar__support" data-i18n="nav_support">Support</a>
+  </nav>
+  <button class="lang" id="lang" type="button" aria-label="Switch language">CZ</button>
+</header>
+
+<!-- 1. Úvod -->
+<section class="hero" id="top">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <img class="hero__logo" src="assets/logo.webp" alt="Mazan Age">
+    <p class="hero__tag" data-i18n="hero_tag">A prehistoric platformer, hand-made by a lifelong platformer fan.</p>
+    <div class="countdown" id="countdown" aria-live="polite">
+      <span class="countdown__label" data-i18n="release">Coming by the end of 2026</span>
+      <div class="countdown__boxes">
+        <div><b id="cd-d">00</b><small data-i18n="days">days</small></div>
+        <div><b id="cd-h">00</b><small data-i18n="hours">hours</small></div>
+        <div><b id="cd-m">00</b><small data-i18n="minutes">min</small></div>
+        <div><b id="cd-s">00</b><small data-i18n="seconds">sec</small></div>
+      </div>
+    </div>
+    <div class="hero__cta">
+      <a class="stone-btn stone-btn--gold" href="#signup" data-i18n="cta_notify">Notify me</a>
+      <a class="stone-btn" href="#support" data-i18n="cta_support">Support the game</a>
+    </div>
+  </div>
+</section>
+
+<!-- Běžící pás: hrdina utíká, příšery ho honí -->
+<section class="runway" aria-hidden="true">
+  <div class="runway__sky"></div>
+  <div class="runway__ground"></div>
+  <div class="runway__stage" id="runway"></div>
+</section>
+
+<!-- 2. Příběh -->
+<section class="story" id="story">
+  <h2 class="title" data-i18n="story_title">How it all started</h2>
+  <div class="story__chapters">
+    <article class="chapter reveal">
+      <div class="chapter__art"><div class="sprite" data-sprite="boy_idle" data-scale="0.8"></div><img class="chapter__prop chapter__prop--coin" src="assets/coin_gold.webp" alt=""></div>
+      <span class="chapter__num">1</span>
+      <h3 data-i18n="ch1_t">A kid with a gamepad</h3>
+      <p data-i18n="ch1_p">I grew up on platformers. Jumping over pits, collecting coins, hunting for secret rooms and beating “just one more level” long past bedtime.</p>
+    </article>
+    <article class="chapter reveal">
+      <div class="chapter__art"><div class="sprite" data-sprite="boy_attack" data-scale="0.8"></div></div>
+      <span class="chapter__num">2</span>
+      <h3 data-i18n="ch2_t">The love never left</h3>
+      <p data-i18n="ch2_p">Years later I still had that itch. So instead of waiting for the platformer I wanted to play, I started building it myself – evening after evening, level after level.</p>
+    </article>
+    <article class="chapter reveal">
+      <div class="chapter__art"><div class="sprite" data-sprite="raptor" data-scale="0.8"></div><img class="chapter__prop chapter__prop--cave" src="assets/cave.webp" alt=""></div>
+      <span class="chapter__num">3</span>
+      <h3 data-i18n="ch3_t">Welcome to Mazan Age</h3>
+      <p data-i18n="ch3_p">A prehistoric valley of waterfalls, rope bridges and hidden caves – full of grumpy dinosaurs, angry boars and one very stubborn stone golem.</p>
+    </article>
+    <article class="chapter reveal">
+      <div class="chapter__art"><div class="sprite" data-sprite="girl_dance" data-scale="0.8"></div></div>
+      <span class="chapter__num">4</span>
+      <h3 data-i18n="ch4_t">And now I need you</h3>
+      <p data-i18n="ch4_p">The game is coming by the end of 2026. Leave your email to play it first – and if you like what you see, a small one-time tip helps me finish it.</p>
+    </article>
+  </div>
+</section>
+
+<!-- 3. Hrdinové -->
+<section class="heroes">
+  <h2 class="title" data-i18n="heroes_title">Pick your hero</h2>
+  <div class="heroes__row">
+    <figure class="pedestal reveal">
+      <div class="sprite" data-sprite="boy_idle" data-hover="boy_attack"></div>
+      <figcaption><b data-i18n="boy">Boy</b><span data-i18n="boy_p">Wild hair, big club, zero fear.</span></figcaption>
+    </figure>
+    <figure class="pedestal reveal">
+      <div class="sprite" data-sprite="girl_idle" data-hover="girl_dance"></div>
+      <figcaption><b data-i18n="girl">Girl</b><span data-i18n="girl_p">Quick, brave and always one jump ahead.</span></figcaption>
+    </figure>
+  </div>
+  <p class="hint" data-i18n="hover_hint">Hover over a hero (or tap) to see them move.</p>
+</section>
+
+<!-- 4. Příšery -->
+<section class="monsters" id="monsters">
+  <h2 class="title title--light" data-i18n="monsters_title">Who's waiting for you</h2>
+  <div class="monsters__grid" id="bestiary"></div>
+</section>
+
+<!-- 5. Co ve hře je -->
+<section class="features">
+  <h2 class="title" data-i18n="features_title">What's inside</h2>
+  <div class="features__grid">
+    <div class="feature reveal">
+      <div class="feature__weapons">
+        <img src="assets/weapon_dreveny_kyj.webp" alt=""><img src="assets/weapon_kamenna_sekera.webp" alt=""><img src="assets/weapon_kopi.webp" alt=""><img src="assets/weapon_bumerang.webp" alt=""><img src="assets/weapon_prak.webp" alt=""><img src="assets/weapon_pochoden.webp" alt="">
+      </div>
+      <h3 data-i18n="f1_t">12 stone-age weapons</h3>
+      <p data-i18n="f1_p">Clubs, axes, spears, a boomerang, a slingshot and even a flaming torch.</p>
+    </div>
+    <div class="feature reveal">
+      <img class="feature__img" src="assets/cave.webp" alt="">
+      <h3 data-i18n="f2_t">Secret caves</h3>
+      <p data-i18n="f2_p">Ten hidden caves packed with coins, diamonds and food. Step in and press up.</p>
+    </div>
+    <div class="feature reveal">
+      <div class="feature__coins"><img src="assets/coin_gold.webp" alt=""><img src="assets/diamond.webp" alt=""><img src="assets/coin_gold.webp" alt=""></div>
+      <h3 data-i18n="f3_t">Coins, diamonds &amp; secrets</h3>
+      <p data-i18n="f3_p">Smash suspicious rocks, climb to the highest floors and find every treasure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. E-mail -->
+<section class="signup" id="signup">
+  <div class="panel reveal">
+    <img class="signup__ko" src="assets/knocked_out.webp" alt="">
+    <h2 class="title" data-i18n="signup_title">Be the first to play</h2>
+    <p data-i18n="signup_p">Drop your email and you'll get a message the moment Mazan Age is out. No spam – only game news.</p>
+    <form class="signup__form" id="signup-form" novalidate>
+      <label class="sr" for="email" data-i18n="email_label">Your email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="language" id="form-lang" value="en">
+      <button class="stone-btn stone-btn--gold" type="submit" data-i18n="signup_btn">Notify me</button>
+      <label class="consent"><input type="checkbox" id="consent" required> <span data-i18n="consent">I agree to be emailed about Mazan Age. I can ask to be removed at any time.</span></label>
+    </form>
+    <p class="form-msg" id="form-msg" role="status"></p>
+  </div>
+</section>
+
+<!-- 7. Podpora -->
+<section class="support" id="support">
+  <div class="panel reveal">
+    <h2 class="title" data-i18n="support_title">Support the development</h2>
+    <p data-i18n="support_p">Mazan Age is made by one person in their free time. A one-time tip of any size helps pay for art, music and the time to finish the game. Thank you!</p>
+    <div class="tips" id="tips"></div>
+    <p class="tips__note" data-i18n="support_note">Secure one-time payment via Stripe. No account needed.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__parade" id="footer-parade" aria-hidden="true"></div>
+  <p>© 2026 Mazan Age · <span data-i18n="footer">Made with love for platformers.</span></p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
