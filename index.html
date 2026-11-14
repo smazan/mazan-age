@@ -138,7 +138,6 @@
     <a href="#signup" data-i18n="nav_signup">Get notified</a>
     <a href="#support" class="topbar__support" data-i18n="nav_support">Support</a>
   </nav>
-  <div class="hud" id="hud" title="Collect the coins hidden on this page!"><img src="assets/coin_gold.webp" alt=""><span data-i18n="score">SCORE</span> <b id="score">000000</b></div>
   <a class="yt-mini" id="yt-top" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="6" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg></a>
   <button class="lang" id="lang" type="button" aria-label="Switch language">CZ</button>
 </header>
@@ -212,6 +211,19 @@
   </div>
 </section>
 
+<section class="support" id="support-top">
+  <div class="panel panel--row reveal">
+    <div class="panel__head">
+      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title" data-i18n="support_title">Support the development</h2></div>
+      <p data-i18n="support_p">I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
+    </div>
+    <div class="panel__body">
+      <div class="tips"></div>
+      <p class="tips__note" data-i18n="support_note">One-time payment via Stripe.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 3. Hrdinové -->
 <section class="heroes">
   <h2 class="title" data-i18n="heroes_title">Pick your hero</h2>
@@ -268,32 +280,34 @@
 
 <!-- 6. E-mail -->
 <section class="signup" id="signup">
-  <div class="panel reveal">
-    <img loading="lazy" class="box-icon box-icon--big" src="assets/box_coin.webp" alt="" aria-hidden="true">
-    <img loading="lazy" class="box-icon box-icon--small" src="assets/box_coin.webp" alt="" aria-hidden="true">
-    <h2 class="title" data-i18n="signup_title">Be the first to play</h2>
-    <p data-i18n="signup_p">Drop your email and you'll get a message the moment Mazan Age is out. No spam – only game news.</p>
-    <form class="signup__form" id="signup-form" novalidate>
+  <div class="panel panel--row reveal">
+    <div class="panel__head">
+      <div class="panel__title"><img src="assets/box_coin.webp" alt="" width="96" height="100" loading="lazy"><h2 class="title" data-i18n="signup_title">Be the first to play</h2></div>
+      <p data-i18n="signup_p">When Mazan Age is out, I'll send you an email.</p>
+    </div>
+    <form class="panel__body signup__form" id="signup-form" novalidate>
       <label class="sr" for="email" data-i18n="email_label">Your email</label>
-      <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="you@example.com">
+      <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" data-i18n-ph="email_ph" placeholder="Your email">
       <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="language" id="form-lang" value="en">
-      <button class="stone-btn stone-btn--gold" type="submit" data-i18n="signup_btn">Notify me</button>
-      <label class="consent"><input type="checkbox" id="consent" required> <span data-i18n="consent">I agree to be emailed about Mazan Age. I can ask to be removed at any time.</span></label>
+      <button class="pill-btn" type="submit" data-i18n="signup_btn">Notify me</button>
+      <label class="consent"><input type="checkbox" id="consent" required> <span data-i18n="consent">I agree to receive news about Mazan Age.</span></label>
+      <p class="form-msg" id="form-msg" role="status"></p>
     </form>
-    <p class="form-msg" id="form-msg" role="status"></p>
   </div>
 </section>
 
-<!-- 7. Podpora -->
+<!-- 7. Podpora (i pod příběhem) -->
 <section class="support" id="support">
-  <div class="panel reveal">
-    <img loading="lazy" class="box-icon box-icon--big" src="assets/box_diamond.webp" alt="" aria-hidden="true">
-    <img loading="lazy" class="box-icon box-icon--small" src="assets/box_diamond.webp" alt="" aria-hidden="true">
-    <h2 class="title" data-i18n="support_title">Support the development</h2>
-    <p data-i18n="support_p">Mazan Age is made by one person in their free time. A one-time tip of any size helps pay for art, music and the time to finish the game. Thank you!</p>
-    <div class="tips" id="tips"></div>
-    <p class="tips__note" data-i18n="support_note">Secure one-time payment via Stripe. No account needed.</p>
+  <div class="panel panel--row reveal">
+    <div class="panel__head">
+      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title" data-i18n="support_title">Support the development</h2></div>
+      <p data-i18n="support_p">I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
+    </div>
+    <div class="panel__body">
+      <div class="tips"></div>
+      <p class="tips__note" data-i18n="support_note">One-time payment via Stripe.</p>
+    </div>
   </div>
 </section>
 

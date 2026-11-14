@@ -1,7 +1,7 @@
 /* ---------- nadpisy po písmenech ---------- */
 .title .ch { display: inline-block; }
 .title.is-in .ch { animation: letter .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: calc(var(--i) * 40ms); }
-.title .sp { display: inline-block; width: .22em; }
+.title .word { display: inline-block; white-space: nowrap; }
 
 @keyframes bump { 50% { transform: scale(1.18); } }
 @keyframes hover { 50% { translate: 0 -8px; } }

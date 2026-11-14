@@ -23,6 +23,7 @@ export const onLang = (fn) => { langHooks.push(fn); };
 export function applyLang() {
   document.documentElement.lang = lang === "cz" ? "cs" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   document.getElementById("lang").textContent = lang === "cz" ? "EN" : "CZ";
   document.getElementById("form-lang").value = lang;
   langHooks.forEach((fn) => fn());
@@ -43,12 +44,21 @@ export function splitTitles() {
     const text = h.textContent;
     h.setAttribute("aria-label", text);
     h.textContent = "";
-    [...text].forEach((c, i) => {
-      const span = document.createElement("span");
-      span.setAttribute("aria-hidden", "true");
-      if (c === " ") { span.className = "sp"; } else { span.className = "ch"; span.textContent = c; }
-      span.style.setProperty("--i", i);
-      h.appendChild(span);
+    // písmena seskupená do slov – zalomí se jen mezi slovy, ne uprostřed slova
+    let i = 0;
+    text.split(" ").forEach((word, w) => {
+      if (w > 0) { h.appendChild(document.createTextNode(" ")); i++; }
+      const wordEl = document.createElement("span");
+      wordEl.className = "word";
+      wordEl.setAttribute("aria-hidden", "true");
+      [...word].forEach((c) => {
+        const span = document.createElement("span");
+        span.className = "ch";
+        span.textContent = c;
+        span.style.setProperty("--i", i++);
+        wordEl.appendChild(span);
+      });
+      h.appendChild(wordEl);
     });
     if (h.classList.contains("is-in")) { h.classList.remove("is-in"); void h.offsetWidth; h.classList.add("is-in"); }
   });
