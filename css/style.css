@@ -138,7 +138,7 @@ section { padding: 80px 16px; position: relative; }
 .title {
   font: clamp(44px, 8vw, 92px)/1.02 var(--head); text-align: center; margin: 0 0 48px;
   color: var(--gold); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill;
-  text-shadow: 0 5px 0 var(--ink); letter-spacing: 1px;
+  text-shadow: 0 5px 0 var(--ink); letter-spacing: -0.02em;   /* písmena blíž k sobě */
 }
 .title--light { color: var(--sand); }
 
@@ -382,7 +382,7 @@ section { padding: 80px 16px; position: relative; }
   background: url(../assets/night_bg.jpg) center 70% / cover no-repeat; overflow: hidden;
 }
 .ending__ko {   /* omráčený kluk na kamenné plošině (plošina je v obrázku ve středu, horní hrana ~70 % výšky) */
-  position: absolute; left: 50%; bottom: 25%; width: min(40%, 620px); translate: -50% 0;
+  position: absolute; left: 50%; bottom: 25%; width: min(33%, 520px); translate: -50% 0;
   filter: drop-shadow(0 10px 10px rgba(0,0,0,.35)); animation: daze 3.4s ease-in-out infinite;
 }
 .ending__text { position: absolute; left: 0; right: 0; top: 6%; text-align: center; padding: 0 16px; }
@@ -392,6 +392,9 @@ section { padding: 80px 16px; position: relative; }
   position: absolute; left: 50%; bottom: 7%; translate: -50% 0; width: min(300px, 60%); padding: 0; border: 0; background: none; cursor: pointer;
   filter: drop-shadow(0 6px 8px rgba(0,0,0,.4)); transition: transform .15s;
 }
+.ending__again .on { display: none; }
+.ending__again:hover .on, .ending__again:focus-visible .on { display: block; }   /* jako ve hře: písková → po najetí žlutá */
+.ending__again:hover .off, .ending__again:focus-visible .off { display: none; }
 .ending__again:hover { transform: scale(1.08); }
 .ending__again:active { transform: scale(.96); }
 @keyframes daze { 50% { rotate: -1.5deg; translate: -50% -4px; } }
@@ -433,7 +436,7 @@ section { padding: 80px 16px; position: relative; }
 /* ---------- nadpisy po písmenech ---------- */
 .title .ch { display: inline-block; }
 .title.is-in .ch { animation: letter .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: calc(var(--i) * 40ms); }
-.title .sp { display: inline-block; width: .28em; }
+.title .sp { display: inline-block; width: .22em; }
 
 @keyframes bump { 50% { transform: scale(1.18); } }
 @keyframes hover { 50% { translate: 0 -8px; } }
@@ -463,7 +466,7 @@ section { padding: 80px 16px; position: relative; }
   .reels__arrow { display: none; }
   .reel { width: 62vw; }
   .ending__scene { min-height: 460px; background-position: 50% 70%; }
-  .ending__ko { width: 78%; bottom: 24%; }
+  .ending__ko { width: 66%; bottom: 24%; }
   .box-icon--big { width: 84px; left: -10px; top: -40px; }
   .box-icon--small { width: 52px; right: -8px; bottom: -26px; }
   .wcard { width: 72vw; }
