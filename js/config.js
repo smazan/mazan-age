@@ -19,6 +19,18 @@ window.MAZAN_CONFIG = {
   // Prázdné ID = místo přehrávače se ukáže náhled s tlačítkem na kanál.
   youtubeChannel: "https://www.youtube.com/@mazanage",
   youtubeVideoId: "",
+  // Videa na stránce vedle sebe (první je zvýrazněné). id = z odkazu youtube.com/watch?v=ID
+  youtubeVideos: [
+    { id: "whwG_QtT3Us", title: "Mazan Age – Gameplay" },
+    { id: "bqLalaf1pqg", title: "The Slingshot, My Favorite Weapon" },
+    { id: "VP8e5ZHvwtY", title: "Stone Hammer in Action" },
+    { id: "24kVKnj2VQ4", title: "Throwing Knife in Action" },
+    { id: "c7xduXPx8fo", title: "Spiked Mace in Action" },
+    { id: "zvij9iD7czI", title: "Slingshot in Action" },
+    { id: "zSqDDBCIBRw", title: "Stone Axe in Action" },
+    { id: "a1cL5bdpW78", title: "Bone in Action" },
+    { id: "d8cW6qL9z1c", title: "Spiked Club in Action" },
+  ],
 
   // Vydání hry – odpočet na stránce.
   releaseDate: "2026-12-31T23:59:59+01:00",

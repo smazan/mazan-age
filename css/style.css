@@ -316,6 +316,25 @@ section { padding: 80px 16px; position: relative; }
 .tv__stand { width: 200px; height: 26px; margin: 0 auto; background: #8a5a33; border: 4px solid var(--ink); border-top: 0; border-radius: 0 0 20px 20px; }
 .gameplay__cta { margin-top: 34px; }
 
+/* ---------- videa vedle sebe ---------- */
+.videos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1240px; margin: 0 auto; }
+.vcard { margin: 0; background: #8a5a33; border: 4px solid var(--ink); border-radius: 18px; padding: 8px; box-shadow: var(--shadow); text-align: left; transition: transform .2s; }
+.vcard:hover { transform: translateY(-5px) rotate(-.5deg); }
+.vcard--main { grid-column: span 2; grid-row: span 2; align-self: start; }
+.vcard__screen, .vcard iframe { display: block; position: relative; width: 100%; aspect-ratio: 16 / 9; border: 3px solid var(--ink); border-radius: 12px; overflow: hidden; padding: 0; background: #000; cursor: pointer; }
+.vcard__screen img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .3s; filter: brightness(.85); }
+.vcard__screen:hover img { transform: scale(1.06); filter: brightness(1); }
+.vcard__play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 64px; height: 46px; border-radius: 14px; background: #ff0033; box-shadow: 0 5px 0 #9c0020; transition: transform .2s; }
+.vcard__play::after { content: ""; position: absolute; left: 24px; top: 12px; border: 11px solid transparent; border-left: 18px solid #fff; border-right: 0; }
+.vcard--main .vcard__play { width: 100px; height: 70px; border-radius: 20px; }
+.vcard--main .vcard__play::after { left: 38px; top: 19px; border-width: 16px; border-left-width: 28px; }
+.vcard__screen:hover .vcard__play { transform: scale(1.12); }
+.vcard figcaption { padding: 8px 4px 2px; }
+.vcard figcaption a { font: 18px/1.2 var(--head); color: var(--sand); text-decoration: none; letter-spacing: .3px; }
+.vcard--main figcaption a { font-size: 26px; }
+.vcard figcaption a:hover { color: var(--gold); }
+.gameplay__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
 /* ---------- nadpisy po písmenech ---------- */
 .title .ch { display: inline-block; }
 .title.is-in .ch { animation: letter .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: calc(var(--i) * 40ms); }
@@ -337,6 +356,7 @@ section { padding: 80px 16px; position: relative; }
 @media (max-width: 960px) {
   .story__chapters { grid-template-columns: repeat(2, 1fr); }
   .features__grid { grid-template-columns: 1fr; max-width: 520px; }
+  .videos { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
   body { font-size: 17px; }
@@ -346,6 +366,8 @@ section { padding: 80px 16px; position: relative; }
   .hud span { display: none; }
   .hud b { min-width: 0; }
   .runway__hint { font-size: 16px; }
+  .videos { grid-template-columns: 1fr; }
+  .vcard--main { grid-column: auto; grid-row: auto; }
   .story__chapters { grid-template-columns: 1fr; }
   .chapter:nth-child(n) { transform: none; }
   .countdown { padding: 10px 12px 12px; }

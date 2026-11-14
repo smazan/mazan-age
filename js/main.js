@@ -9,7 +9,7 @@
     en: {
       nav_video: "Gameplay", score: "SCORE",
       runway_hint: "Tap here or press Space to jump!", jumped: "Jumped over", ouch: "Ouch! Jump earlier!",
-      video_title: "See it in action", video_label: "Watch the gameplay on YouTube", subscribe: "Subscribe on YouTube",
+      video_title: "See it in action", video_label: "Watch the gameplay on YouTube", subscribe: "Subscribe", channel: "All videos on YouTube", play: "Play video",
       loot_hint: "Psst… there are coins hidden all over this page. Click them!",
       loot_got: "Treasure", loot_all: "You found every treasure! You're a true platformer fan.",
       nav_story: "Story", nav_monsters: "Monsters", nav_signup: "Get notified", nav_support: "Support",
@@ -62,7 +62,7 @@
     cz: {
       nav_video: "Video", score: "SKÓRE",
       runway_hint: "Ťukni sem nebo zmáčkni mezerník a skákej!", jumped: "Přeskočeno", ouch: "Au! Skoč dřív!",
-      video_title: "Podívej se, jak to hraje", video_label: "Gameplay na YouTube", subscribe: "Odebírat na YouTube",
+      video_title: "Podívej se, jak to hraje", video_label: "Gameplay na YouTube", subscribe: "Odebírat", channel: "Všechna videa na YouTube", play: "Přehrát video",
       loot_hint: "Pst… po celé stránce jsou schované mince. Klikej na ně!",
       loot_got: "Poklad", loot_all: "Našel jsi všechny poklady! Jsi pravý fanoušek plošinovek.",
       nav_story: "Příběh", nav_monsters: "Příšery", nav_signup: "Dej mi vědět", nav_support: "Podpořit",
@@ -441,23 +441,46 @@
     parade.appendChild(wrap);
   });
 
-  // ------------------------------------------------------------------ YouTube
+  // ------------------------------------------------------------------ YouTube – videa vedle sebe
+  // Náhled z YouTube, přehrávač (youtube-nocookie) se načte až po kliknutí – rychlé a bez cookies předem.
   const yt = CFG.youtubeChannel || "https://www.youtube.com/@mazanage";
-  ["yt-top", "tv-poster"].forEach((id) => { document.getElementById(id).href = yt; });
+  document.getElementById("yt-top").href = yt;
+  document.getElementById("yt-channel").href = yt;
   document.getElementById("yt-sub").href = yt + "?sub_confirmation=1";
-  if (CFG.youtubeVideoId) {
-    const poster = document.getElementById("tv-poster");
-    poster.querySelector("img").src = "https://i.ytimg.com/vi/" + encodeURIComponent(CFG.youtubeVideoId) + "/maxresdefault.jpg";
-    poster.addEventListener("click", (e) => {   // přehrávač se načte až po kliknutí (rychlost, soukromí)
-      e.preventDefault();
+  const vids = document.getElementById("videos");
+  (CFG.youtubeVideos || []).forEach((v, i) => {
+    const card = document.createElement("figure");
+    card.className = "vcard reveal" + (i === 0 ? " vcard--main" : "");
+    const scr = document.createElement("button");
+    scr.type = "button";
+    scr.className = "vcard__screen";
+    scr.setAttribute("aria-label", v.title);
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.alt = "";
+    img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.id) + (i === 0 ? "/maxresdefault.jpg" : "/hqdefault.jpg");
+    img.onerror = () => { img.onerror = null; img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v.id) + "/hqdefault.jpg"; };
+    const play = document.createElement("span");
+    play.className = "vcard__play";
+    scr.append(img, play);
+    scr.addEventListener("click", () => {
       const f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(CFG.youtubeVideoId) + "?autoplay=1&rel=0";
-      f.title = "Mazan Age gameplay";
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0";
+      f.title = v.title;
       f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       f.allowFullscreen = true;
-      document.getElementById("tv").replaceChildren(f);
+      scr.replaceWith(f);
     });
-  }
+    const cap = document.createElement("figcaption");
+    const link = document.createElement("a");
+    link.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(v.id);
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = v.title;
+    cap.appendChild(link);
+    card.append(scr, cap);
+    vids.appendChild(card);
+  });
 
   // ------------------------------------------------------------------ poklady schované po stránce
   const LOOT = [
