@@ -26,14 +26,11 @@ V nastavení formuláře zapni **reCAPTCHA / spam filtr**.
 Tlačítka bez odkazu se na stránce ukážou šedá s textem „brzy“.
 
 ## 3. Zveřejnění (GitHub Pages)
-Repozitář hry `smazan/mazanage` je soukromý – Pages ze soukromého repa vyžaduje GitHub Pro.
-Proto pro web samostatný **veřejný** repozitář (např. `mazan-age`), do kterého se nahraje jen obsah složky `web/`:
+Web běží na **https://smazan.github.io/mazan-age/** z veřejného repozitáře `smazan/mazan-age`
+(repo hry `smazan/mazanage` je soukromé a zůstává). Po každé úpravě `web/` (např. vyplnění `config.js`):
 
 ```bash
-gh repo create mazan-age --public
-cd web && git init && git add . && git commit -m "Landing page" && git branch -M main
-git remote add origin https://github.com/<ucet>/mazan-age.git && git push -u origin main
-gh api repos/<ucet>/mazan-age/pages -X POST -f "source[branch]=main" -f "source[path]=/"
+sh navrh/publikuj_web.sh "popis zmeny"
 ```
 
-Adresa pak bude `https://<ucet>.github.io/mazan-age/`. Vlastní doménu lze nastavit v Settings → Pages.
+Za 1–2 minuty je změna venku. Vlastní doménu lze nastavit v repozitáři mazan-age → Settings → Pages.
