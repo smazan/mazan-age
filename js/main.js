@@ -7,6 +7,7 @@
   // ------------------------------------------------------------------ texty EN / CZ
   const T = {
     en: {
+      end_title: "Game over?", end_p: "Not yet! The real adventure starts by the end of 2026.", again_toast: "Here we go again!",
       nav_video: "Gameplay", score: "SCORE", nav_weapons: "Weapons", weapons_title: "Choose your weapon",
       wtype_melee: "Melee", wtype_throw: "Throw", wtype_shoot: "Shoot", wtype_boomerang: "Returns",
       w_power: "Power", w_speed: "Speed", w_range: "Range", w_picked: "{w} – great choice!",
@@ -76,6 +77,7 @@
       },
     },
     cz: {
+      end_title: "Konec hry?", end_p: "Ještě ne! Skutečné dobrodružství začne do konce roku 2026.", again_toast: "Jdeme na to znovu!",
       nav_video: "Video", score: "SKÓRE", nav_weapons: "Zbraně", weapons_title: "Vyber si zbraň",
       wtype_melee: "Zblízka", wtype_throw: "Vrhací", wtype_shoot: "Střelná", wtype_boomerang: "Vrací se",
       w_power: "Síla", w_speed: "Rychlost", w_range: "Dosah", w_picked: "{w} – skvělá volba!",
@@ -594,6 +596,12 @@
   });
   hud.addEventListener("click", () => toast(t("loot_hint")));
   setTimeout(() => { if (found === 0) toast(t("loot_hint")); }, 9000);
+
+  // ------------------------------------------------------------------ konec stránky: Play again = zpět nahoru
+  document.getElementById("play-again").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    toast(t("again_toast"));
+  });
 
   // ------------------------------------------------------------------ odhalování při rolování, lišta
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {

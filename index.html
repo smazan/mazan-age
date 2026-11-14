@@ -157,7 +157,8 @@
 <!-- 6. E-mail -->
 <section class="signup" id="signup">
   <div class="panel reveal">
-    <img class="signup__ko" src="assets/knocked_out.webp" alt="">
+    <img class="box-icon box-icon--big" src="assets/box_coin.webp" alt="" aria-hidden="true">
+    <img class="box-icon box-icon--small" src="assets/box_coin.webp" alt="" aria-hidden="true">
     <h2 class="title" data-i18n="signup_title">Be the first to play</h2>
     <p data-i18n="signup_p">Drop your email and you'll get a message the moment Mazan Age is out. No spam – only game news.</p>
     <form class="signup__form" id="signup-form" novalidate>
@@ -175,10 +176,24 @@
 <!-- 7. Podpora -->
 <section class="support" id="support">
   <div class="panel reveal">
+    <img class="box-icon box-icon--big" src="assets/box_diamond.webp" alt="" aria-hidden="true">
+    <img class="box-icon box-icon--small" src="assets/box_diamond.webp" alt="" aria-hidden="true">
     <h2 class="title" data-i18n="support_title">Support the development</h2>
     <p data-i18n="support_p">Mazan Age is made by one person in their free time. A one-time tip of any size helps pay for art, music and the time to finish the game. Thank you!</p>
     <div class="tips" id="tips"></div>
     <p class="tips__note" data-i18n="support_note">Secure one-time payment via Stripe. No account needed.</p>
+  </div>
+</section>
+
+<!-- Konec stránky jako game over ve hře -->
+<section class="ending" id="ending">
+  <div class="ending__scene">
+    <img class="ending__ko" src="assets/knocked_out.webp" alt="">
+    <div class="ending__text">
+      <h2 class="title title--light" data-i18n="end_title">Game over?</h2>
+      <p data-i18n="end_p">Not yet! The real adventure starts by the end of 2026.</p>
+    </div>
+    <button class="ending__again" id="play-again" type="button" aria-label="Play again"><img src="assets/play_again.webp" alt="Play again"></button>
   </div>
 </section>
 
