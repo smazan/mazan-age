@@ -1,0 +1,41 @@
+@use "variables" as *;
+
+/* ---------- mobil ---------- */
+@media (max-width: #{$bp-tablet}) {
+  .story__chapters { grid-template-columns: repeat(2, 1fr); }
+  .features__grid { grid-template-columns: 1fr; max-width: 520px; }
+}
+@media (max-width: #{$bp-mobile}) {
+  section { padding-top: 90px; padding-bottom: 90px; }
+  .ending { padding: 90px 0; }
+  body { font-size: 17px; }
+  .topbar { padding: 8px 12px; }
+  .topbar__nav a:not(.topbar__support) { display: none; }
+  .hud { font-size: 14px; padding: 2px 6px; margin-left: 0; }
+  .hud span { display: none; }
+  .hud b { min-width: 0; }
+  .reels__arrow { display: none; }
+  .reel { width: 62vw; }
+  .ending__scene { min-height: 460px; background-position: 50% 70%; }
+  .ending__ko { width: 66%; bottom: 24%; }
+  .box-icon--big { width: 84px; left: -10px; top: -40px; }
+  .box-icon--small { width: 52px; right: -8px; bottom: -26px; }
+  .wcard { width: 72vw; }
+  .reel.is-playing { width: 78vw; }
+  .story__chapters { grid-template-columns: 1fr; }
+  .chapter:nth-child(n) { transform: none; }
+  .countdown { padding: 10px 12px 12px; }
+  .torch { width: 54px; }
+  .torch--left { left: -26px; translate: 0 -70%; }
+  .torch--right { right: -26px; translate: 0 -70%; }
+  .hero__char { height: 34vh; max-width: 40vw; top: auto; bottom: 1vh; translate: none; opacity: .95; }
+  .hero__char--boy { left: -6vw; }
+  .hero__char--girl { right: -6vw; }
+  .countdown__boxes { gap: 6px; }
+  .countdown__boxes div { min-width: 70px; padding: 6px 6px 4px; }
+  .countdown__boxes b { font-size: 34px; }
+  .countdown__boxes small { font-size: 11px; }
+  .signup__form { grid-template-columns: 1fr; }
+  .heroes__row { gap: 30px; }
+  .stone-btn { font-size: 21px; padding: 12px 22px; }
+}

@@ -1,0 +1,51 @@
+/* ---------- reels karusel přes celou šířku ---------- */
+.gameplay { padding-left: 0; padding-right: 0; }
+.reels { position: relative; width: 100%; }
+.reels__track {
+  display: flex; gap: 18px; overflow-x: auto; overscroll-behavior-x: contain;
+  padding: 10px 24px 26px; scrollbar-width: none; cursor: grab;
+}
+.reels__track::-webkit-scrollbar { display: none; }
+@media (pointer: coarse) { .reels__track { scroll-snap-type: x proximity; } }   /* přichytávání jen na dotyku – na PC by vracelo samo-posouvání */
+.reels__track.is-drag { cursor: grabbing; scroll-snap-type: none; }
+.reels__track.is-drag * { pointer-events: none; }
+.reel {
+  flex: 0 0 auto; width: clamp(200px, 19vw, 280px); margin: 0; scroll-snap-align: center;
+  background: #8a5a33; border: 4px solid var(--ink); border-radius: 22px; padding: 7px; box-shadow: var(--shadow);
+  transition: transform .25s; text-align: left;
+}
+.reel:nth-child(odd) { transform: rotate(-1.2deg); }
+.reel:nth-child(even) { transform: rotate(1.2deg) translateY(10px); }
+.reel:hover, .reel.is-playing { transform: rotate(0) translateY(-6px) scale(1.03); z-index: 2; }
+.reel__screen {
+  display: block; position: relative; width: 100%; aspect-ratio: 9 / 16; border: 3px solid var(--ink); border-radius: 16px;
+  overflow: hidden; padding: 0; background: #000; cursor: pointer;
+}
+.reel__screen img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s, filter .3s; filter: brightness(.82) saturate(1.1); user-select: none; }
+.reel__screen:hover img { transform: scale(1.08); filter: brightness(1); }
+.reel__screen::after { /* ztmavení dole pod názvem a přehrávací ikona nahoře v rohu jako u reels */
+  content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(transparent, rgba(0,0,0,.65));
+}
+.reel__play {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 70px; height: 70px; border-radius: 50%; z-index: 1;
+  background: rgba(255, 0, 51, .92); box-shadow: 0 6px 0 #9c0020, 0 10px 24px rgba(0,0,0,.5); transition: transform .2s;
+}
+.reel__play::after { content: ""; position: absolute; left: 27px; top: 21px; border: 14px solid transparent; border-left: 22px solid #fff; border-right: 0; }
+.reel__screen:hover .reel__play { transform: scale(1.12); }
+/* přehrávač na výšku: video na šířku zvětšené na výšku karty, vidět je střed */
+.reel__screen--live { cursor: auto; }
+.reel__screen--live::after { display: none; }
+.reel__screen--live iframe { position: absolute; top: 0; left: 50%; height: 100%; width: 316%; translate: -50% 0; border: 0; }
+.reel.is-playing { width: clamp(260px, 26vw, 380px); }
+.reel figcaption { padding: 9px 4px 3px; min-height: 3.1em; }
+.reel figcaption a { font: 19px/1.2 var(--head); color: var(--sand); text-decoration: none; letter-spacing: .3px; }
+.reel figcaption a:hover { color: var(--gold); }
+.reels__arrow {
+  position: absolute; top: 42%; z-index: 4; width: 56px; height: 56px; border-radius: 50%;
+  font: 40px/1 var(--head); color: var(--ink); background: var(--gold); border: 4px solid var(--ink);
+  box-shadow: 0 5px 0 var(--ink); cursor: pointer; display: grid; place-items: center; padding-bottom: 6px;
+}
+.reels__arrow:hover { transform: scale(1.08); }
+.reels__arrow--prev { left: 14px; }
+.reels__arrow--next { right: 14px; }
+.gameplay__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; padding: 0 16px; margin-top: 24px; }

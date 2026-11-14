@@ -1,0 +1,22 @@
+/* ---------- horní lišta ---------- */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; gap: 16px;
+  padding: 8px 20px;
+  background: rgba(59, 33, 15, .0);
+  transition: background .3s, box-shadow .3s;
+}
+.topbar.is-solid { background: rgba(59, 33, 15, .88); box-shadow: 0 4px 18px rgba(0,0,0,.25); }
+.topbar__logo img { height: 44px; width: auto; opacity: 0; transition: opacity .3s; }
+.topbar.is-solid .topbar__logo img { opacity: 1; }
+.topbar__nav { margin-left: auto; display: flex; gap: 6px; }
+.topbar__nav a {
+  font: 18px var(--head); letter-spacing: .5px; color: var(--white); text-decoration: none;
+  padding: 6px 12px; border-radius: 999px; text-shadow: 0 2px 0 rgba(0,0,0,.35);
+}
+.topbar__nav a:hover { background: rgba(255,255,255,.15); }
+.topbar__support { background: var(--gold); color: var(--ink) !important; text-shadow: none !important; box-shadow: 0 3px 0 var(--gold-dark); }
+.lang {
+  font: 16px var(--head); color: var(--ink); background: var(--sand);
+  border: 3px solid var(--ink); border-radius: 12px; padding: 4px 10px; cursor: pointer;
+}

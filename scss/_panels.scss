@@ -1,0 +1,4 @@
+/* ---------- velké ikony v rozích boxů (mince / diamant) ---------- */
+.box-icon { position: absolute; z-index: 3; pointer-events: none; filter: drop-shadow(0 8px 8px rgba(0,0,0,.3)); }
+.box-icon--big { width: 150px; left: -10px; top: -62px; rotate: -14deg; animation: hover 3s ease-in-out infinite; }
+.box-icon--small { width: 82px; right: -6px; bottom: -36px; rotate: 12deg; animation: hover 2.4s ease-in-out infinite reverse; }

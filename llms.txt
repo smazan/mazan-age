@@ -1,0 +1,20 @@
+# Mazan Age
+
+> Mazan Age is a hand-made 2D prehistoric platformer by a solo developer and lifelong platformer fan. It is planned to be available by the end of 2026.
+
+## Facts
+- Genre: 2D action platformer, single player.
+- Heroes: a cavekid boy or a cavekid girl (the player picks one).
+- World: a prehistoric jungle valley with waterfalls, rope bridges, multi-floor platforms and ten hidden caves (bonus rooms with coins, diamonds and food).
+- Weapons (12): wooden club, spiked club, bone club, stone axe, double axe, stone spear, fire torch, boomerang, stone hammer, slingshot, bone dagger, spiked mace. Melee, thrown and ranged.
+- Enemies: raptors, stone golem, pterodactyls dropping rocks, wild boars in groups of three, mammoths, spiky turtles, snakes, piranhas, spiders, a rival caveman.
+- Collectibles: copper, silver and gold coins, diamonds, food, secret rocks with rewards.
+- Languages of the website: English (primary), Czech.
+
+## Links
+- Website: https://smazan.github.io/mazan-age/
+- YouTube channel with gameplay videos: https://www.youtube.com/@mazanage
+
+## How to follow or support
+- Leave an email on the website to be notified on release.
+- One-time tips of 1, 2, 3, 5 or 10 EUR on the website.

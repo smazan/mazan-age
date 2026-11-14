@@ -1,0 +1,9 @@
+/* ---------- sprite (animační pás) ---------- */
+.sprite {
+  width: calc(var(--w) * var(--s) * 1px); height: calc(var(--h) * var(--s) * 1px);
+  background-image: var(--img); background-repeat: no-repeat;
+  background-size: calc(var(--w) * var(--s) * var(--n) * 1px) 100%;
+  animation: play calc(var(--n) / var(--fps) * 1s) steps(var(--n)) infinite;
+}
+.sprite.flip { transform: scaleX(-1); }
+@keyframes play { to { background-position-x: calc(var(--w) * var(--s) * var(--n) * -1px); } }
