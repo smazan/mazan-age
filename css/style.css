@@ -86,9 +86,9 @@ a { color: inherit; }
   background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,0) 45%, rgba(0,0,0,0) 80%, rgba(246,223,176,.6));
 }
 .hero__content { position: relative; z-index: 2; text-align: center; padding: 84px 16px 40px; max-width: 900px; }
-.hero__logo { width: min(560px, 86vw); margin: 0 auto; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); animation: bob 3.2s ease-in-out infinite; }
+.hero__logo { width: min(680px, 90vw); margin: 0 auto; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); animation: bob 3.2s ease-in-out infinite; }
 .hero__tag {
-  font: 800 clamp(18px, 2.4vw, 24px)/1.35 var(--body); color: var(--white);
+  font: 800 clamp(20px, 2.8vw, 30px)/1.3 var(--body); color: var(--white);
   text-shadow: 0 2px 0 rgba(0,0,0,.6), 0 0 14px rgba(0,0,0,.6); margin: 8px auto 18px; max-width: 640px;
 }
 .hero__cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
@@ -132,9 +132,9 @@ a { color: inherit; }
 @keyframes play { to { background-position-x: calc(var(--w) * var(--s) * var(--n) * -1px); } }
 
 /* ---------- sekce ---------- */
-section { padding: 80px 16px; }
+section { padding: 80px 16px; position: relative; }
 .title {
-  font: clamp(32px, 5vw, 52px)/1.1 var(--head); text-align: center; margin: 0 0 40px;
+  font: clamp(44px, 8vw, 92px)/1.02 var(--head); text-align: center; margin: 0 0 48px;
   color: var(--gold); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill;
   text-shadow: 0 5px 0 var(--ink); letter-spacing: 1px;
 }
@@ -163,7 +163,7 @@ section { padding: 80px 16px; }
   display: grid; place-items: center; font: 26px var(--head); color: var(--ink);
   background: var(--gold); border: 4px solid var(--ink);
 }
-.chapter h3 { font: 26px/1.15 var(--head); margin: 0 0 8px; letter-spacing: .5px; }
+.chapter h3 { font: 32px/1.1 var(--head); margin: 0 0 10px; letter-spacing: .5px; }
 .chapter p { margin: 0; font-size: 17px; }
 
 .heroes { background: linear-gradient(var(--sand), #f0cf92); text-align: center; }
@@ -177,7 +177,7 @@ section { padding: 80px 16px; }
   order: 2;
 }
 .pedestal figcaption { order: 3; margin-top: 14px; display: flex; flex-direction: column; }
-.pedestal figcaption b { font: 30px var(--head); color: var(--ink); }
+.pedestal figcaption b { font: 40px var(--head); color: var(--ink); }
 .hint { font-size: 15px; opacity: .7; margin-top: 26px; }
 
 .monsters {
@@ -194,13 +194,13 @@ section { padding: 80px 16px; }
 }
 .beast:hover { transform: translateY(-6px) rotate(-1deg); }
 .beast__stage { height: 150px; display: grid; place-items: end center; border-bottom: 3px dashed var(--sand-dark); margin-bottom: 10px; }
-.beast b { font: 22px var(--head); display: block; }
+.beast b { font: 28px var(--head); display: block; }
 .beast span { font-size: 15px; }
 
 .features { background: var(--sand); }
 .features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
 .feature { background: var(--white); border: 4px solid var(--ink); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); text-align: center; }
-.feature h3 { font: 26px var(--head); margin: 12px 0 6px; }
+.feature h3 { font: 32px/1.1 var(--head); margin: 14px 0 8px; }
 .feature p { margin: 0; }
 .feature__img { height: 150px; width: auto; margin: 0 auto; }
 .feature__weapons { height: 150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-items: center; }
@@ -237,6 +237,7 @@ section { padding: 80px 16px; }
 .tips__note { font-size: 14px; opacity: .75; margin: 6px 0 0; }
 
 .footer { background: var(--ink); color: var(--sand); text-align: center; padding: 0 16px 30px; position: relative; overflow: hidden; }
+.footer a { color: var(--gold); }
 .footer__parade { height: 120px; position: relative; }
 .footer p { margin: 0; font-size: 15px; }
 
@@ -248,6 +249,84 @@ section { padding: 80px 16px; }
 @keyframes spin { 50% { transform: scaleX(.2); } }
 @keyframes clouds { to { background-position-x: -1200px; } }
 @keyframes ground { to { background-position-x: -120px; } }
+
+/* ---------- HUD skóre, YouTube ---------- */
+.hud {
+  display: flex; align-items: center; gap: 6px; margin-left: 10px;
+  font: 18px var(--head); color: var(--white); background: rgba(14, 60, 140, .85);
+  border: 3px solid #7fb4ff; border-radius: 12px; padding: 3px 10px; letter-spacing: .5px;
+}
+.hud img { width: 22px; }
+.hud b { font-weight: 400; color: var(--gold); min-width: 64px; }
+.hud.bump { animation: bump .35s; }
+.yt-mini svg { width: 36px; height: 26px; display: block; filter: drop-shadow(0 2px 0 rgba(0,0,0,.35)); }
+.stone-btn--red { background: linear-gradient(#ff5a5a, #e01e1e 55%, #a80f0f); }
+
+/* ---------- sbírání pokladů na stránce ---------- */
+.loot {
+  position: absolute; z-index: 5; width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer;
+  animation: spin 1.6s ease-in-out infinite, hover 2.4s ease-in-out infinite;
+}
+.loot img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 3px 2px rgba(0,0,0,.35)); }
+.loot.got { animation: got .45s forwards; pointer-events: none; }
+.pop {
+  position: absolute; z-index: 6; pointer-events: none; font: 30px var(--head); color: var(--gold);
+  -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; animation: pop .9s forwards;
+}
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 80; translate: -50% 140%;
+  background: var(--ink); color: var(--sand); font: 20px var(--head); letter-spacing: .5px;
+  padding: 12px 22px; border-radius: 16px; border: 3px solid var(--gold); transition: translate .35s;
+  max-width: calc(100% - 32px); text-align: center;
+}
+.toast.show { translate: -50% 0; }
+
+/* ---------- běžící pás – hra ---------- */
+.runway { cursor: pointer; user-select: none; }
+.runway__hint {
+  position: absolute; left: 50%; top: 14px; translate: -50% 0; margin: 0; z-index: 3;
+  font: 20px var(--head); color: var(--ink); background: rgba(255,250,240,.85); padding: 4px 14px;
+  border: 3px solid var(--ink); border-radius: 999px; animation: bob 2.2s ease-in-out infinite; white-space: nowrap;
+}
+.runway__score { position: absolute; right: 16px; top: 14px; margin: 0; z-index: 3; font: 22px var(--head); color: var(--ink); }
+.runner.hit { animation: hit .4s; }
+
+/* ---------- video ---------- */
+.gameplay { background: radial-gradient(ellipse at 50% 30%, #2a6a4a, #10302a 70%); text-align: center; }
+.tv { max-width: 920px; margin: 0 auto; }
+.tv__screen {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 26px; overflow: hidden;
+  border: 14px solid #8a5a33; outline: 4px solid var(--ink); box-shadow: inset 0 0 0 4px var(--ink), 0 20px 50px rgba(0,0,0,.5);
+  background: #000;
+}
+.tv__screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tv__poster { position: absolute; inset: 0; display: block; }
+.tv__poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.7); transition: filter .3s, transform .6s; }
+.tv__poster:hover img { filter: brightness(.9); transform: scale(1.04); }
+.tv__play {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 110px; height: 78px; border-radius: 22px;
+  background: #ff0033; box-shadow: 0 8px 0 #9c0020, 0 14px 30px rgba(0,0,0,.5); transition: transform .2s;
+}
+.tv__play::after { content: ""; position: absolute; left: 42px; top: 21px; border: 18px solid transparent; border-left: 30px solid #fff; border-right: 0; }
+.tv__poster:hover .tv__play { transform: scale(1.1); }
+.tv__label {
+  position: absolute; left: 0; right: 0; bottom: 18px; font: clamp(20px, 3vw, 32px) var(--head); color: var(--white);
+  text-shadow: 0 3px 0 var(--ink), 0 0 12px rgba(0,0,0,.7);
+}
+.tv__stand { width: 200px; height: 26px; margin: 0 auto; background: #8a5a33; border: 4px solid var(--ink); border-top: 0; border-radius: 0 0 20px 20px; }
+.gameplay__cta { margin-top: 34px; }
+
+/* ---------- nadpisy po písmenech ---------- */
+.title .ch { display: inline-block; }
+.title.is-in .ch { animation: letter .6s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: calc(var(--i) * 40ms); }
+.title .sp { display: inline-block; width: .28em; }
+
+@keyframes bump { 50% { transform: scale(1.18); } }
+@keyframes hover { 50% { translate: 0 -8px; } }
+@keyframes got { to { transform: translateY(-60px) scale(1.6); opacity: 0; } }
+@keyframes pop { from { transform: translateY(0) scale(.6); opacity: 1; } to { transform: translateY(-70px) scale(1.2); opacity: 0; } }
+@keyframes hit { 25%, 75% { opacity: .2; } 50% { opacity: 1; } }
+@keyframes letter { from { transform: translateY(40px) scale(.4) rotate(-12deg); opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -263,6 +342,10 @@ section { padding: 80px 16px; }
   body { font-size: 17px; }
   .topbar { padding: 8px 12px; }
   .topbar__nav a:not(.topbar__support) { display: none; }
+  .hud { font-size: 14px; padding: 2px 6px; margin-left: 0; }
+  .hud span { display: none; }
+  .hud b { min-width: 0; }
+  .runway__hint { font-size: 16px; }
   .story__chapters { grid-template-columns: 1fr; }
   .chapter:nth-child(n) { transform: none; }
   .countdown__boxes div { min-width: 54px; padding: 4px 6px; }

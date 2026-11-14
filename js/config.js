@@ -15,6 +15,11 @@ window.MAZAN_CONFIG = {
     10: "",
   },
 
+  // YouTube: kanál a ID videa k přehrání na stránce (z odkazu youtube.com/watch?v=ID nebo youtu.be/ID).
+  // Prázdné ID = místo přehrávače se ukáže náhled s tlačítkem na kanál.
+  youtubeChannel: "https://www.youtube.com/@mazanage",
+  youtubeVideoId: "",
+
   // Vydání hry – odpočet na stránce.
   releaseDate: "2026-12-31T23:59:59+01:00",
 };

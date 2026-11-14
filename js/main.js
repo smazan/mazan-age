@@ -7,6 +7,11 @@
   // ------------------------------------------------------------------ texty EN / CZ
   const T = {
     en: {
+      nav_video: "Gameplay", score: "SCORE",
+      runway_hint: "Tap here or press Space to jump!", jumped: "Jumped over", ouch: "Ouch! Jump earlier!",
+      video_title: "See it in action", video_label: "Watch the gameplay on YouTube", subscribe: "Subscribe on YouTube",
+      loot_hint: "Psst… there are coins hidden all over this page. Click them!",
+      loot_got: "Treasure", loot_all: "You found every treasure! You're a true platformer fan.",
       nav_story: "Story", nav_monsters: "Monsters", nav_signup: "Get notified", nav_support: "Support",
       hero_tag: "A prehistoric platformer, hand-made by a lifelong platformer fan.",
       release: "Coming by the end of 2026", days: "days", hours: "hours", minutes: "min", seconds: "sec", out_now: "Out now!",
@@ -55,6 +60,11 @@
       },
     },
     cz: {
+      nav_video: "Video", score: "SKÓRE",
+      runway_hint: "Ťukni sem nebo zmáčkni mezerník a skákej!", jumped: "Přeskočeno", ouch: "Au! Skoč dřív!",
+      video_title: "Podívej se, jak to hraje", video_label: "Gameplay na YouTube", subscribe: "Odebírat na YouTube",
+      loot_hint: "Pst… po celé stránce jsou schované mince. Klikej na ně!",
+      loot_got: "Poklad", loot_all: "Našel jsi všechny poklady! Jsi pravý fanoušek plošinovek.",
       nav_story: "Příběh", nav_monsters: "Příšery", nav_signup: "Dej mi vědět", nav_support: "Podpořit",
       hero_tag: "Pravěká plošinovka, kterou ručně vyrobil celoživotní fanoušek plošinovek.",
       release: "Vychází do konce roku 2026", days: "dní", hours: "hodin", minutes: "min", seconds: "s", out_now: "Právě vyšlo!",
@@ -108,8 +118,14 @@
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* bez úložiště */ } },
   };
-  let lang = store.get("mazan-lang") || (/^(cs|sk)/i.test(navigator.language || "") ? "cz" : "en");
+  let lang = store.get("mazan-lang") || "en";   // primární jazyk angličtina, CZ jen přepínačem
   const t = (key) => (T[lang] && T[lang][key]) || T.en[key] || key;
+  let score = 0;
+  let jumpsShown = null;
+  function updateJumps() {
+    const el = document.getElementById("jumps");
+    if (el && jumpsShown) el.textContent = jumpsShown();
+  }
 
   function applyLang() {
     document.documentElement.lang = lang === "cz" ? "cs" : "en";
@@ -118,7 +134,36 @@
     document.getElementById("form-lang").value = lang;
     buildBestiary();
     buildTips();
+    splitTitles();
     tick();
+    updateJumps();
+  }
+
+  // Nadpisy: každé písmeno zvlášť, při zobrazení naskáčou jedno po druhém.
+  function splitTitles() {
+    document.querySelectorAll(".title").forEach((h) => {
+      const text = h.textContent;
+      h.setAttribute("aria-label", text);
+      h.textContent = "";
+      [...text].forEach((c, i) => {
+        const span = document.createElement("span");
+        span.setAttribute("aria-hidden", "true");
+        if (c === " ") { span.className = "sp"; } else { span.className = "ch"; span.textContent = c; }
+        span.style.setProperty("--i", i);
+        h.appendChild(span);
+      });
+      if (h.classList.contains("is-in")) { h.classList.remove("is-in"); void h.offsetWidth; h.classList.add("is-in"); }
+    });
+  }
+
+  // ------------------------------------------------------------------ toast
+  let toastT = 0;
+  function toast(text) {
+    const el = document.getElementById("toast");
+    el.textContent = text;
+    el.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(() => el.classList.remove("show"), 2600);
   }
   document.getElementById("lang").addEventListener("click", () => {
     lang = lang === "cz" ? "en" : "cz";
@@ -262,7 +307,7 @@
     wrap.className = "runner";
     wrap.appendChild(makeSprite(id, 0.72));
     runway.appendChild(wrap);
-    heroes.push({ el: wrap, xPct, jump: 0, w: SPR[id].w * 0.72 });
+    heroes.push({ el: wrap, xPct, jump: 0, w: SPR[id].w * 0.72, auto: true, hitCd: 0 });
   }
   addHero("girl_run", 0.14);
   addHero("boy_run", 0.28);
@@ -289,6 +334,31 @@
     runway.appendChild(wrap);
     ptero = { el: wrap, x: W + 60, y: 120 };
   }
+  let jumps = 0;
+  let playing = false;
+  function playerJump() {
+    const boy = heroes[1];
+    if (!playing) {
+      playing = true;
+      boy.auto = false;
+      foes.forEach((f) => { f.done = true; });   // počítá se až od teď
+      document.querySelector(".runway__hint").style.display = "none";
+    }
+    if (boy.jump <= 0) boy.jump = 0.62;
+    jumpsShown = () => `${t("jumped")}: ${jumps}`;
+    updateJumps();
+  }
+  const runBox = document.getElementById("runway-box");
+  runBox.addEventListener("pointerdown", playerJump);
+  let runVisible = false;
+  new IntersectionObserver((en) => { runVisible = en[0].isIntersecting; }, { threshold: 0.5 }).observe(runBox);
+  window.addEventListener("keydown", (e) => {
+    const tag = document.activeElement ? document.activeElement.tagName : "";
+    if ((e.code === "Space" || e.code === "ArrowUp") && runVisible && !["INPUT", "TEXTAREA", "BUTTON", "A", "SELECT"].includes(tag)) {
+      e.preventDefault();
+      playerJump();
+    }
+  });
   let last = performance.now();
   let pteroIn = 5;
   function frame(now) {
@@ -315,7 +385,7 @@
       const hx = W * h.xPct;
       // skok, když se blíží příšera
       const near = foes.some((f) => f.x > hx - 10 && f.x < hx + h.w + 60);
-      if (near && h.jump <= 0) h.jump = 0.62;
+      if (h.auto && near && h.jump <= 0) h.jump = 0.62;
       let y = 0;
       if (h.jump > 0) {
         h.jump -= dt;
@@ -323,6 +393,22 @@
         y = -Math.sin(p * Math.PI) * 120;
       }
       h.el.style.transform = `translate(${hx}px, ${y}px)`;
+      if (!h.auto) {   // hráč: náraz a počítání přeskočených
+        h.hitCd -= dt;
+        foes.forEach((f) => {
+          const overlap = f.x < hx + h.w * 0.7 && f.x + f.w * 0.7 > hx + h.w * 0.3;
+          if (overlap && y > -45 && h.hitCd <= 0 && !f.hit) {
+            f.hit = true;
+            h.hitCd = 0.8;
+            h.el.classList.remove("hit"); void h.el.offsetWidth; h.el.classList.add("hit");
+            toast(t("ouch"));
+          }
+          if (!f.done && f.x + f.w < hx) {
+            f.done = true;
+            if (!f.hit) { jumps++; addScore(50); updateJumps(); }
+          }
+        });
+      }
     });
     if (ptero) {
       ptero.x -= 150 * dt;
@@ -355,11 +441,77 @@
     parade.appendChild(wrap);
   });
 
+  // ------------------------------------------------------------------ YouTube
+  const yt = CFG.youtubeChannel || "https://www.youtube.com/@mazanage";
+  ["yt-top", "tv-poster"].forEach((id) => { document.getElementById(id).href = yt; });
+  document.getElementById("yt-sub").href = yt + "?sub_confirmation=1";
+  if (CFG.youtubeVideoId) {
+    const poster = document.getElementById("tv-poster");
+    poster.querySelector("img").src = "https://i.ytimg.com/vi/" + encodeURIComponent(CFG.youtubeVideoId) + "/maxresdefault.jpg";
+    poster.addEventListener("click", (e) => {   // přehrávač se načte až po kliknutí (rychlost, soukromí)
+      e.preventDefault();
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(CFG.youtubeVideoId) + "?autoplay=1&rel=0";
+      f.title = "Mazan Age gameplay";
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      document.getElementById("tv").replaceChildren(f);
+    });
+  }
+
+  // ------------------------------------------------------------------ poklady schované po stránce
+  const LOOT = [
+    ["story", 3, 12, "coin"], ["story", 95, 8, "diamond"], ["heroes", 8, 40, "coin"], ["heroes", 90, 30, "coin"],
+    ["monsters", 4, 6, "diamond"], ["monsters", 96, 92, "coin"], ["features", 50, 6, "coin"], ["features", 3, 90, "coin"],
+    ["signup", 92, 20, "diamond"], ["support", 6, 70, "coin"], ["gameplay", 94, 10, "coin"], ["footer", 50, 70, "diamond"],
+  ];
+  let found = 0;
+  const scoreEl = document.getElementById("score");
+  const hud = document.getElementById("hud");
+  function addScore(n) {
+    score += n;
+    scoreEl.textContent = String(score).padStart(6, "0");
+    hud.classList.remove("bump"); void hud.offsetWidth; hud.classList.add("bump");
+  }
+  LOOT.forEach(([sel, x, y, kind]) => {
+    const host = document.querySelector("." + sel);
+    if (!host) return;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "loot";
+    b.setAttribute("aria-label", kind);
+    b.style.left = `calc(${x}% - ${x * 0.44}px)`;   // i u pravého okraje celá uvnitř (šířka 44 px)
+    b.style.top = y + "%";
+    b.style.animationDelay = (Math.random() * -2) + "s";
+    const img = document.createElement("img");
+    img.src = kind === "diamond" ? "assets/diamond.webp" : "assets/coin_gold.webp";
+    img.alt = "";
+    b.appendChild(img);
+    b.addEventListener("click", () => {
+      const pts = kind === "diamond" ? 500 : 100;
+      addScore(pts);
+      found++;
+      const pop = document.createElement("span");
+      pop.className = "pop";
+      pop.textContent = "+" + pts;
+      pop.style.left = b.style.left;
+      pop.style.top = b.style.top;
+      host.appendChild(pop);
+      setTimeout(() => pop.remove(), 900);
+      b.classList.add("got");
+      setTimeout(() => b.remove(), 450);
+      toast(found === LOOT.length ? t("loot_all") : `${t("loot_got")} ${found}/${LOOT.length}`);
+    });
+    host.appendChild(b);
+  });
+  hud.addEventListener("click", () => toast(t("loot_hint")));
+  setTimeout(() => { if (found === 0) toast(t("loot_hint")); }, 9000);
+
   // ------------------------------------------------------------------ odhalování při rolování, lišta
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
   }), { threshold: 0.15 });
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  document.querySelectorAll(".reveal, .title").forEach((el) => io.observe(el));
   const bar = document.querySelector(".topbar");
   const onScroll = () => bar.classList.toggle("is-solid", window.scrollY > 80);
   window.addEventListener("scroll", onScroll, { passive: true });

@@ -19,11 +19,14 @@
 <header class="topbar">
   <a class="topbar__logo" href="#top"><img src="assets/logo.webp" alt="Mazan Age"></a>
   <nav class="topbar__nav">
+    <a href="#gameplay" data-i18n="nav_video">Gameplay</a>
     <a href="#story" data-i18n="nav_story">Story</a>
     <a href="#monsters" data-i18n="nav_monsters">Monsters</a>
     <a href="#signup" data-i18n="nav_signup">Get notified</a>
     <a href="#support" class="topbar__support" data-i18n="nav_support">Support</a>
   </nav>
+  <div class="hud" id="hud" title="Collect the coins hidden on this page!"><img src="assets/coin_gold.webp" alt=""><span data-i18n="score">SCORE</span> <b id="score">000000</b></div>
+  <a class="yt-mini" id="yt-top" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="6" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg></a>
   <button class="lang" id="lang" type="button" aria-label="Switch language">CZ</button>
 </header>
 
@@ -50,10 +53,30 @@
 </section>
 
 <!-- Běžící pás: hrdina utíká, příšery ho honí -->
-<section class="runway" aria-hidden="true">
+<section class="runway" id="runway-box">
   <div class="runway__sky"></div>
   <div class="runway__ground"></div>
-  <div class="runway__stage" id="runway"></div>
+  <div class="runway__stage" id="runway" aria-hidden="true"></div>
+  <p class="runway__hint" data-i18n="runway_hint">Tap here or press Space to jump!</p>
+  <p class="runway__score" id="jumps" aria-live="polite"></p>
+</section>
+
+<!-- Video -->
+<section class="gameplay" id="gameplay">
+  <h2 class="title title--light" data-i18n="video_title">See it in action</h2>
+  <div class="tv reveal">
+    <div class="tv__screen" id="tv">
+      <a class="tv__poster" id="tv-poster" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">
+        <img src="assets/hero_bg.jpg" alt="">
+        <span class="tv__play" aria-hidden="true"></span>
+        <span class="tv__label" data-i18n="video_label">Watch the gameplay on YouTube</span>
+      </a>
+    </div>
+    <div class="tv__stand"></div>
+  </div>
+  <div class="gameplay__cta">
+    <a class="stone-btn stone-btn--red" id="yt-sub" href="https://www.youtube.com/@mazanage?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="subscribe">Subscribe on YouTube</a>
+  </div>
 </section>
 
 <!-- 2. Příběh -->
@@ -163,8 +186,10 @@
 
 <footer class="footer">
   <div class="footer__parade" id="footer-parade" aria-hidden="true"></div>
-  <p>© 2026 Mazan Age · <span data-i18n="footer">Made with love for platformers.</span></p>
+  <p>© 2026 Mazan Age · <span data-i18n="footer">Made with love for platformers.</span> · <a href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">YouTube @mazanage</a></p>
 </footer>
+
+<div class="toast" id="toast" role="status"></div>
 
 <script src="js/config.js"></script>
 <script src="js/sprites.js"></script>
