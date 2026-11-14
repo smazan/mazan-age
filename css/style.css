@@ -14,6 +14,7 @@
   --shadow: 0 10px 0 rgba(59, 33, 15, .25), 0 18px 40px rgba(0, 0, 0, .25);
   /* světlé pozadí: papír a nad ním vrstva s mamuty (DATA/Web) */
   --paper: url(../assets/mammoths.webp) 0 0 / 560px auto repeat, url(../assets/paper.jpg) 0 0 / 640px auto repeat, var(--sand);
+  --title: "Fredoka", "Arial Rounded MT Bold", system-ui, sans-serif;   /* nadpisy: tučné, čistá barva bez obrysu a stínu */
   --head: "Lilita One", "Arial Black", system-ui, sans-serif;
   --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -80,13 +81,20 @@ a { color: inherit; }
 .hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: start center; overflow: hidden; }
 .hero__bg {
   position: absolute; inset: -4%;
-  background: url(../assets/hero_bg.jpg) center 40% / cover no-repeat;
+  background: url(../assets/hero_bg2.jpg) center 40% / cover no-repeat;   /* džungle bez postav – postavy jsou zvlášť */
   animation: breathe 18s ease-in-out infinite alternate;
 }
 .hero::after { /* ztmavení nahoře kvůli čitelnosti */
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,0) 45%);
 }
+.hero__char {   /* kluk a holka vlevo a vpravo, vždy celí v okně prohlížeče */
+  position: absolute; z-index: 1; top: calc(100svh - min(66vh, 620px) - 3vh); height: min(66vh, 620px);   /* vždy celé v okně */ width: auto; max-width: 30vw; object-fit: contain;
+  filter: drop-shadow(0 12px 14px rgba(0,0,0,.35)); animation: idle 2.6s ease-in-out infinite; pointer-events: none;
+}
+.hero__char--boy { left: max(8px, 2vw); object-position: left bottom; transform-origin: 50% 100%; }
+.hero__char--girl { right: max(8px, 2vw); object-position: right bottom; transform-origin: 50% 100%; animation-delay: -1.3s; }
+@keyframes idle { 50% { transform: translateY(-6px) scaleY(1.015); } }
 .hero__content { position: relative; z-index: 2; text-align: center; padding: 72px 16px 40px; max-width: 900px; }
 .hero__logo { width: min(560px, 88vw, 62vh); margin: 0 auto; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); animation: bob 3.2s ease-in-out infinite; }
 .hero__tag {
@@ -98,12 +106,12 @@ a { color: inherit; }
 .countdown { position: relative; display: inline-block; background: rgba(59,33,15,.8); border: 4px solid var(--ink); border-radius: 28px; padding: 14px 22px 18px; box-shadow: var(--shadow); }
 /* hořící pochodně vlevo a vpravo od odpočtu */
 .torch {
-  position: absolute; top: 50%; width: 136px; pointer-events: none; z-index: 1;
+  position: absolute; top: 50%; width: 84px; pointer-events: none; z-index: 1;
   filter: drop-shadow(0 0 18px rgba(255, 150, 30, .85)) drop-shadow(0 0 40px rgba(255, 90, 0, .5));
   animation: flicker 1.3s ease-in-out infinite;
 }
-.torch--left { left: -142px; translate: 0 -58%; rotate: -6deg; }
-.torch--right { right: -142px; translate: 0 -58%; rotate: 6deg; scale: -1 1; animation-delay: -.6s; }
+.torch--left { left: -44px; translate: 0 -62%; rotate: -22deg; }   /* přidělané na bocích tabule, plamen nahoru */
+.torch--right { right: -44px; translate: 0 -62%; rotate: 22deg; scale: -1 1; animation-delay: -.6s; }
 @keyframes flicker {
   0%, 100% { filter: drop-shadow(0 0 18px rgba(255, 150, 30, .85)) drop-shadow(0 0 40px rgba(255, 90, 0, .5)) brightness(1); }
   30% { filter: drop-shadow(0 0 26px rgba(255, 170, 40, .95)) drop-shadow(0 0 56px rgba(255, 100, 0, .6)) brightness(1.12); }
@@ -151,11 +159,10 @@ a { color: inherit; }
 /* ---------- sekce ---------- */
 section { padding: 80px 16px; position: relative; }
 .title {
-  font: clamp(44px, 8vw, 92px)/1.02 var(--head); text-align: center; margin: 0 0 48px;
-  color: var(--gold); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill;
-  text-shadow: 0 5px 0 var(--ink); letter-spacing: -0.02em;   /* písmena blíž k sobě */
+  font: 700 clamp(44px, 8vw, 92px)/1.02 var(--title); text-align: center; margin: 0 0 48px;
+  color: #c2560c; letter-spacing: -0.02em;   /* čistá barva, písmena blíž k sobě */
 }
-.title--light { color: var(--sand); }
+.title--light { color: #ffc23d; }
 
 .story { background: transparent; }   /* světlé sekce průhledné – papír a mamuti jsou jedno pozadí body, navazuje přes všechny */
 .story__chapters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1200px; margin: 0 auto; }
@@ -180,7 +187,7 @@ section { padding: 80px 16px; position: relative; }
   display: grid; place-items: center; font: 26px var(--head); color: var(--ink);
   background: var(--gold); border: 4px solid var(--ink);
 }
-.chapter h3 { font: 32px/1.1 var(--head); margin: 0 0 10px; letter-spacing: .5px; }
+.chapter h3 { font: 700 32px/1.1 var(--title); margin: 0 0 10px; letter-spacing: .5px; }
 .chapter p { margin: 0; font-size: 17px; }
 
 .heroes { background: transparent; text-align: center; }
@@ -194,7 +201,7 @@ section { padding: 80px 16px; position: relative; }
   order: 2;
 }
 .pedestal figcaption { order: 3; margin-top: 14px; display: flex; flex-direction: column; }
-.pedestal figcaption b { font: 40px var(--head); color: var(--ink); }
+.pedestal figcaption b { font: 700 40px var(--title); color: var(--ink); }
 .hint { font-size: 15px; opacity: .7; margin-top: 26px; }
 
 .monsters {
@@ -211,13 +218,13 @@ section { padding: 80px 16px; position: relative; }
 }
 .beast:hover { transform: translateY(-6px) rotate(-1deg); }
 .beast__stage { height: 150px; display: grid; place-items: end center; border-bottom: 3px dashed var(--sand-dark); margin-bottom: 10px; }
-.beast b { font: 28px var(--head); display: block; }
+.beast b { font: 700 28px var(--title); display: block; }
 .beast span { font-size: 15px; }
 
 .features { background: transparent; }
 .features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
 .feature { background: var(--white); border: 4px solid var(--ink); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); text-align: center; }
-.feature h3 { font: 32px/1.1 var(--head); margin: 14px 0 8px; }
+.feature h3 { font: 700 32px/1.1 var(--title); margin: 14px 0 8px; }
 .feature p { margin: 0; }
 .feature__img { height: 150px; width: auto; margin: 0 auto; }
 .feature__weapons { height: 150px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-items: center; }
@@ -431,7 +438,7 @@ section { padding: 80px 16px; position: relative; }
 }
 .wcard__slot img { max-width: 92%; max-height: 120px; transform: rotate(-18deg); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); user-select: none; }
 .wcard:hover .wcard__slot img, .wcard.is-picked .wcard__slot img { transform: rotate(-38deg) scale(1.08); }
-.wcard b { display: block; font: 28px/1.1 var(--head); letter-spacing: .3px; }
+.wcard b { display: block; font: 700 28px/1.1 var(--title); letter-spacing: .3px; }
 .wcard__line { display: block; font-size: 15px; min-height: 2.6em; margin: 4px 0 10px; }
 .wcard__badge {
   position: absolute; right: 12px; top: 12px; z-index: 1; font: 14px var(--head); letter-spacing: .5px; color: var(--white);
@@ -490,8 +497,11 @@ section { padding: 80px 16px; position: relative; }
   .chapter:nth-child(n) { transform: none; }
   .countdown { padding: 10px 12px 12px; }
   .torch { width: 54px; }
-  .torch--left { left: -30px; translate: 0 -95%; }
-  .torch--right { right: -30px; translate: 0 -95%; }
+  .torch--left { left: -26px; translate: 0 -70%; }
+  .torch--right { right: -26px; translate: 0 -70%; }
+  .hero__char { height: 34vh; max-width: 40vw; top: calc(100svh - 34vh - 1vh); opacity: .95; }
+  .hero__char--boy { left: -6vw; }
+  .hero__char--girl { right: -6vw; }
   .countdown__boxes { gap: 6px; }
   .countdown__boxes div { min-width: 70px; padding: 6px 6px 4px; }
   .countdown__boxes b { font-size: 34px; }
