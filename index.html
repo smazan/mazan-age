@@ -21,6 +21,7 @@
   <nav class="topbar__nav">
     <a href="#gameplay" data-i18n="nav_video">Gameplay</a>
     <a href="#story" data-i18n="nav_story">Story</a>
+    <a href="#weapons-sec" data-i18n="nav_weapons">Weapons</a>
     <a href="#monsters" data-i18n="nav_monsters">Monsters</a>
     <a href="#signup" data-i18n="nav_signup">Get notified</a>
     <a href="#support" class="topbar__support" data-i18n="nav_support">Support</a>
@@ -52,18 +53,9 @@
   </div>
 </section>
 
-<!-- Běžící pás: hrdina utíká, příšery ho honí -->
-<section class="runway" id="runway-box">
-  <div class="runway__sky"></div>
-  <div class="runway__ground"></div>
-  <div class="runway__stage" id="runway" aria-hidden="true"></div>
-  <p class="runway__hint" data-i18n="runway_hint">Tap here or press Space to jump!</p>
-  <p class="runway__score" id="jumps" aria-live="polite"></p>
-</section>
-
 <!-- Video -->
 <section class="gameplay" id="gameplay">
-  <h2 class="title title--light" data-i18n="video_title">See it in action</h2>
+  <h2 class="title" data-i18n="video_title">See it in action</h2>
   <div class="reels">
     <button class="reels__arrow reels__arrow--prev" id="reels-prev" type="button" aria-label="Previous">‹</button>
     <div class="reels__track" id="videos"></div>
@@ -120,6 +112,16 @@
     </figure>
   </div>
   <p class="hint" data-i18n="hover_hint">Hover over a hero (or tap) to see them move.</p>
+</section>
+
+<!-- Zbraně -->
+<section class="weapons" id="weapons-sec">
+  <h2 class="title" data-i18n="weapons_title">Choose your weapon</h2>
+  <div class="reels">
+    <button class="reels__arrow reels__arrow--prev" id="weapons-prev" type="button" aria-label="Previous">‹</button>
+    <div class="reels__track weapons__track" id="weapons"></div>
+    <button class="reels__arrow reels__arrow--next" id="weapons-next" type="button" aria-label="Next">›</button>
+  </div>
 </section>
 
 <!-- 4. Příšery -->
@@ -181,7 +183,6 @@
 </section>
 
 <footer class="footer">
-  <div class="footer__parade" id="footer-parade" aria-hidden="true"></div>
   <p>© 2026 Mazan Age · <span data-i18n="footer">Made with love for platformers.</span> · <a href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">YouTube @mazanage</a></p>
 </footer>
 

@@ -7,7 +7,23 @@
   // ------------------------------------------------------------------ texty EN / CZ
   const T = {
     en: {
-      nav_video: "Gameplay", score: "SCORE",
+      nav_video: "Gameplay", score: "SCORE", nav_weapons: "Weapons", weapons_title: "Choose your weapon",
+      wtype_melee: "Melee", wtype_throw: "Throw", wtype_shoot: "Shoot", wtype_boomerang: "Returns",
+      w_power: "Power", w_speed: "Speed", w_range: "Range", w_picked: "{w} – great choice!",
+      weapons: {
+        "01_dreveny_kyj": ["Wooden Club", "The classic. Simple and reliable."],
+        "02_ostnaty_dreveny_kyj": ["Spiked Club", "Double damage, a little slower."],
+        "03_kostena_palice": ["Bone Club", "Quick and light – throw it!"],
+        "04_kamenna_sekera": ["Stone Axe", "Spins through the air."],
+        "05_dvojita_sekera": ["Double Axe", "Cuts through a whole line of enemies."],
+        "06_kamenne_kopi": ["Stone Spear", "Longest reach in the valley."],
+        "07_ohniva_pochoden": ["Fire Torch", "Sets enemies on fire."],
+        "08_bumerang": ["Boomerang", "Flies out and comes back."],
+        "09_kamenne_kladivo": ["Stone Hammer", "Heavy throw, huge hit."],
+        "10_prak": ["Slingshot", "Shoots stones from afar."],
+        "11_kostena_dyka": ["Bone Dagger", "Fastest throws of all."],
+        "12_ostnaty_palcat": ["Spiked Mace", "Wide crushing blow."],
+      },
       runway_hint: "Tap here or press Space to jump!", jumped: "Jumped over", ouch: "Ouch! Jump earlier!",
       video_title: "See it in action", video_label: "Watch the gameplay on YouTube", subscribe: "Subscribe", channel: "All videos on YouTube", play: "Play video",
       loot_hint: "Psst… there are coins hidden all over this page. Click them!",
@@ -60,7 +76,23 @@
       },
     },
     cz: {
-      nav_video: "Video", score: "SKÓRE",
+      nav_video: "Video", score: "SKÓRE", nav_weapons: "Zbraně", weapons_title: "Vyber si zbraň",
+      wtype_melee: "Zblízka", wtype_throw: "Vrhací", wtype_shoot: "Střelná", wtype_boomerang: "Vrací se",
+      w_power: "Síla", w_speed: "Rychlost", w_range: "Dosah", w_picked: "{w} – skvělá volba!",
+      weapons: {
+        "01_dreveny_kyj": ["Dřevěný kyj", "Klasika. Jednoduchý a spolehlivý."],
+        "02_ostnaty_dreveny_kyj": ["Ostnatý kyj", "Dvojnásobná rána, o kousek pomalejší."],
+        "03_kostena_palice": ["Kostěná palice", "Rychlá a lehká – hoď ji!"],
+        "04_kamenna_sekera": ["Kamenná sekera", "Točí se vzduchem."],
+        "05_dvojita_sekera": ["Dvojitá sekera", "Prosekne celou řadu nepřátel."],
+        "06_kamenne_kopi": ["Kamenné kopí", "Nejdelší dosah v údolí."],
+        "07_ohniva_pochoden": ["Ohnivá pochodeň", "Zapálí nepřátele."],
+        "08_bumerang": ["Bumerang", "Odletí a vrátí se."],
+        "09_kamenne_kladivo": ["Kamenné kladivo", "Těžký hod, obrovská rána."],
+        "10_prak": ["Prak", "Střílí kameny zdálky."],
+        "11_kostena_dyka": ["Kostěná dýka", "Nejrychlejší hody ze všech."],
+        "12_ostnaty_palcat": ["Ostnatý palcát", "Široká drtivá rána."],
+      },
       runway_hint: "Ťukni sem nebo zmáčkni mezerník a skákej!", jumped: "Přeskočeno", ouch: "Au! Skoč dřív!",
       video_title: "Podívej se, jak to hraje", video_label: "Gameplay na YouTube", subscribe: "Odebírat", channel: "Všechna videa na YouTube", play: "Přehrát video",
       loot_hint: "Pst… po celé stránce jsou schované mince. Klikej na ně!",
@@ -134,6 +166,7 @@
     document.getElementById("form-lang").value = lang;
     buildBestiary();
     buildTips();
+    if (typeof buildWeapons === "function") buildWeapons();
     splitTitles();
     tick();
     updateJumps();
@@ -297,159 +330,75 @@
     }
   });
 
-  // ------------------------------------------------------------------ běžící pás
-  // Hrdinové běží na místě, země ujíždí; příšery jedou zprava a hrdinové je přeskakují.
-  const runway = document.getElementById("runway");
-  const RUN_FOES = [["raptor", 0.62], ["boar", 0.85], ["golem", 0.55], ["turtle", 0.85], ["mammoth", 0.55], ["snake", 0.75], ["tomas", 0.6]];
-  const heroes = [];
-  function addHero(id, xPct) {
-    const wrap = document.createElement("div");
-    wrap.className = "runner";
-    wrap.appendChild(makeSprite(id, 0.72));
-    runway.appendChild(wrap);
-    heroes.push({ el: wrap, xPct, jump: 0, w: SPR[id].w * 0.72, auto: true, hitCd: 0 });
-  }
-  addHero("girl_run", 0.14);
-  addHero("boy_run", 0.28);
-  const foes = [];
-  let spawnIn = 0.8;
-  let foeIdx = 0;
-  let ptero = null;
-  function spawnFoe(W) {
-    const [id, sc] = RUN_FOES[foeIdx++ % RUN_FOES.length];
-    const wrap = document.createElement("div");
-    wrap.className = "runner";
-    const sp = makeSprite(id, sc);
-    sp.classList.add("flip");
-    wrap.appendChild(sp);
-    runway.appendChild(wrap);
-    foes.push({ el: wrap, x: W + 40, w: SPR[id].w * sc, speed: 210 + Math.random() * 60 });
-  }
-  function spawnPtero(W) {
-    const wrap = document.createElement("div");
-    wrap.className = "runner";
-    const sp = makeSprite("ptero", 0.5);
-    sp.classList.add("flip");
-    wrap.appendChild(sp);
-    runway.appendChild(wrap);
-    ptero = { el: wrap, x: W + 60, y: 120 };
-  }
-  let jumps = 0;
-  let playing = false;
-  function playerJump() {
-    const boy = heroes[1];
-    if (!playing) {
-      playing = true;
-      boy.auto = false;
-      foes.forEach((f) => { f.done = true; });   // počítá se až od teď
-      document.querySelector(".runway__hint").style.display = "none";
-    }
-    if (boy.jump <= 0) boy.jump = 0.62;
-    jumpsShown = () => `${t("jumped")}: ${jumps}`;
-    updateJumps();
-  }
-  const runBox = document.getElementById("runway-box");
-  runBox.addEventListener("pointerdown", playerJump);
-  let runVisible = false;
-  new IntersectionObserver((en) => { runVisible = en[0].isIntersecting; }, { threshold: 0.5 }).observe(runBox);
-  window.addEventListener("keydown", (e) => {
-    const tag = document.activeElement ? document.activeElement.tagName : "";
-    if ((e.code === "Space" || e.code === "ArrowUp") && runVisible && !["INPUT", "TEXTAREA", "BUTTON", "A", "SELECT"].includes(tag)) {
-      e.preventDefault();
-      playerJump();
-    }
-  });
-  let last = performance.now();
-  let pteroIn = 5;
-  function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000);
-    last = now;
-    const W = runway.clientWidth;
-    spawnIn -= dt;
-    if (spawnIn <= 0) {
-      spawnFoe(W);
-      spawnIn = 1.6 + Math.random() * 1.4;
-    }
-    pteroIn -= dt;
-    if (!ptero && pteroIn <= 0) spawnPtero(W);
-    for (let i = foes.length - 1; i >= 0; i--) {
-      const f = foes[i];
-      f.x -= f.speed * dt;
-      f.el.style.transform = `translateX(${f.x}px)`;
-      if (f.x < -f.w - 40) {
-        f.el.remove();
-        foes.splice(i, 1);
-      }
-    }
-    heroes.forEach((h) => {
-      const hx = W * h.xPct;
-      // skok, když se blíží příšera
-      const near = foes.some((f) => f.x > hx - 10 && f.x < hx + h.w + 60);
-      if (h.auto && near && h.jump <= 0) h.jump = 0.62;
-      let y = 0;
-      if (h.jump > 0) {
-        h.jump -= dt;
-        const p = 1 - Math.max(h.jump, 0) / 0.62;
-        y = -Math.sin(p * Math.PI) * 120;
-      }
-      h.el.style.transform = `translate(${hx}px, ${y}px)`;
-      if (!h.auto) {   // hráč: náraz a počítání přeskočených
-        h.hitCd -= dt;
-        foes.forEach((f) => {
-          const overlap = f.x < hx + h.w * 0.7 && f.x + f.w * 0.7 > hx + h.w * 0.3;
-          if (overlap && y > -45 && h.hitCd <= 0 && !f.hit) {
-            f.hit = true;
-            h.hitCd = 0.8;
-            h.el.classList.remove("hit"); void h.el.offsetWidth; h.el.classList.add("hit");
-            toast(t("ouch"));
-          }
-          if (!f.done && f.x + f.w < hx) {
-            f.done = true;
-            if (!f.hit) { jumps++; addScore(50); updateJumps(); }
-          }
-        });
-      }
+  // ------------------------------------------------------------------ karusel (videa, zbraně)
+  // Šipky, tažení myší, na dotyku prstem; pomalé samo-posouvání – stojí při najetí myší, tažení,
+  // 4 s po šipce a když ctl.pause = true (např. přehrává se video).
+  function carousel(track, prevBtn, nextBtn, speed) {
+    const ctl = { pause: false, dragMoved: false };
+    let hover = false;
+    let dragX = null;
+    let dragStart = 0;
+    let holdUntil = 0;
+    const step = () => ((track.firstElementChild || {}).offsetWidth || 280) + 18;
+    const jump = (dir) => {
+      holdUntil = performance.now() + 4000;
+      let to = track.scrollLeft + dir * step() * 2;
+      if (to > track.scrollWidth - track.clientWidth + 4) to = 0;
+      if (to < -4) to = track.scrollWidth;
+      track.scrollTo({ left: to, behavior: "smooth" });
+    };
+    prevBtn.addEventListener("click", () => jump(-1));
+    nextBtn.addEventListener("click", () => jump(1));
+    track.addEventListener("mouseenter", () => { hover = true; });
+    track.addEventListener("mouseleave", () => { hover = false; dragX = null; track.classList.remove("is-drag"); });
+    track.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse") return;   // dotyk posouvá prohlížeč sám
+      dragX = e.clientX;
+      dragStart = track.scrollLeft;
+      ctl.dragMoved = false;
     });
-    if (ptero) {
-      ptero.x -= 150 * dt;
-      ptero.y = 20 + Math.sin(now / 500) * 14;
-      ptero.el.style.transform = `translate(${ptero.x}px, ${-120 - ptero.y}px)`;
-      if (ptero.x < -150) {
-        ptero.el.remove();
-        ptero = null;
-        pteroIn = 6 + Math.random() * 5;
+    window.addEventListener("pointermove", (e) => {
+      if (dragX === null) return;
+      const dx = e.clientX - dragX;
+      if (Math.abs(dx) > 6) { ctl.dragMoved = true; track.classList.add("is-drag"); }
+      if (ctl.dragMoved) track.scrollLeft = dragStart - dx;
+    });
+    window.addEventListener("pointerup", () => {
+      if (dragX === null) return;
+      dragX = null;
+      track.classList.remove("is-drag");
+      setTimeout(() => { ctl.dragMoved = false; }, 0);
+    });
+    track.addEventListener("touchstart", () => { ctl.pause = true; }, { passive: true });
+    let acc = 0;
+    let last = performance.now();
+    function tickC(now) {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (!reduced && !ctl.pause && !hover && dragX === null && now > holdUntil) {
+        acc += speed * dt;
+        if (acc >= 1) {
+          const px = Math.floor(acc);
+          acc -= px;
+          if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) track.scrollLeft = 0;
+          else track.scrollLeft += px;
+        }
       }
+      requestAnimationFrame(tickC);
     }
-    requestAnimationFrame(frame);
-  }
-  if (!reduced) {
-    requestAnimationFrame(frame);
-  } else {
-    heroes.forEach((h) => { h.el.style.transform = `translateX(${runway.clientWidth * h.xPct}px)`; });
+    requestAnimationFrame(tickC);
+    return ctl;
   }
 
-  // ------------------------------------------------------------------ průvod v patičce
-  const parade = document.getElementById("footer-parade");
-  [["boy_run", 0.45], ["girl_run", 0.45], ["boar", 0.55], ["raptor", 0.4], ["turtle", 0.55], ["golem", 0.38]].forEach(([id, sc], i) => {
-    const wrap = document.createElement("div");
-    wrap.className = "runner";
-    wrap.style.bottom = "8px";
-    wrap.appendChild(makeSprite(id, sc));
-    if (!reduced) wrap.animate([{ transform: "translateX(-200px)" }, { transform: "translateX(calc(100vw + 200px))" }],
-      { duration: 16000, delay: -i * 2200, iterations: Infinity });
-    else wrap.style.left = 20 + i * 150 + "px";
-    parade.appendChild(wrap);
-  });
-
-  // ------------------------------------------------------------------ YouTube – videa vedle sebe
-  // Náhled z YouTube, přehrávač (youtube-nocookie) se načte až po kliknutí – rychlé a bez cookies předem.
+  // ------------------------------------------------------------------ YouTube – reels
+  // Karty na výšku 9:16; videa jsou na šířku – ukazuje se střed obrazu (náhled i přehrávač).
+  // Přehrávač (youtube-nocookie) se načte až po kliknutí – rychlé a bez cookies předem.
   const yt = CFG.youtubeChannel || "https://www.youtube.com/@mazanage";
   document.getElementById("yt-top").href = yt;
   document.getElementById("yt-channel").href = yt;
   document.getElementById("yt-sub").href = yt + "?sub_confirmation=1";
-  // Reels: karty na výšku 9:16 v karuselu přes celou šířku. Videa jsou na šířku – ukazuje se střed obrazu
-  // (náhled i přehrávač jsou oříznuté). Přehrávač (youtube-nocookie) se načte až po kliknutí.
   const vids = document.getElementById("videos");
+  const reelCtl = carousel(vids, document.getElementById("reels-prev"), document.getElementById("reels-next"), 28);
   let playingCard = null;
   (CFG.youtubeVideos || []).forEach((v) => {
     const card = document.createElement("figure");
@@ -477,7 +426,7 @@
     scr.append(img, play);
     card.append(scr, cap);
     scr.addEventListener("click", () => {
-      if (dragMoved) return;
+      if (reelCtl.dragMoved) return;
       if (playingCard && playingCard !== card) stopReel(playingCard);
       const f = document.createElement("iframe");
       f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0&playsinline=1";
@@ -485,13 +434,13 @@
       f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       f.allowFullscreen = true;
       const box = document.createElement("div");
-      box.className = "reel__screen reel__screen--live";   // video na šířku zvětšené na výšku karty – střed obrazu
+      box.className = "reel__screen reel__screen--live";
       box.appendChild(f);
       card.classList.add("is-playing");
       card._screen = scr;
       scr.replaceWith(box);
       playingCard = card;
-      pauseAuto = true;
+      reelCtl.pause = true;
     });
     vids.appendChild(card);
   });
@@ -501,61 +450,102 @@
     card.classList.remove("is-playing");
     if (playingCard === card) playingCard = null;
   }
-  // šipky, tažení myší, pomalé samo-posouvání (stojí při najetí, tažení a přehrávání)
-  const step = () => (vids.querySelector(".reel") || {}).offsetWidth + 18 || 300;
-  let holdUntil = 0;   // po šipce chvíli bez samo-posouvání (jinak by přerušilo plynulý posun)
-  const jump = (dir) => {
-    holdUntil = performance.now() + 4000;
-    let to = vids.scrollLeft + dir * step() * 2;
-    if (to > vids.scrollWidth - vids.clientWidth + 4) to = 0;
-    if (to < -4) to = vids.scrollWidth;
-    vids.scrollTo({ left: to, behavior: "smooth" });
-  };
-  document.getElementById("reels-prev").addEventListener("click", () => jump(-1));
-  document.getElementById("reels-next").addEventListener("click", () => jump(1));
-  let pauseAuto = false;
-  let hoverReels = false;
-  let dragX = null;
-  let dragStart = 0;
-  let dragMoved = false;
-  vids.addEventListener("mouseenter", () => { hoverReels = true; });
-  vids.addEventListener("mouseleave", () => { hoverReels = false; dragX = null; vids.classList.remove("is-drag"); });
-  vids.addEventListener("pointerdown", (e) => {
-    if (e.pointerType !== "mouse") return;   // dotyk posouvá prohlížeč sám
-    dragX = e.clientX;
-    dragStart = vids.scrollLeft;
-    dragMoved = false;
-  });
-  window.addEventListener("pointermove", (e) => {
-    if (dragX === null) return;
-    const dx = e.clientX - dragX;
-    if (Math.abs(dx) > 6) { dragMoved = true; vids.classList.add("is-drag"); }
-    if (dragMoved) vids.scrollLeft = dragStart - dx;
-  });
-  window.addEventListener("pointerup", () => {
-    if (dragX === null) return;
-    dragX = null;
-    vids.classList.remove("is-drag");
-    setTimeout(() => { dragMoved = false; }, 0);
-  });
-  vids.addEventListener("touchstart", () => { pauseAuto = true; }, { passive: true });
-  let autoAcc = 0;
-  let lastReel = performance.now();
-  function reelTick(now) {
-    const dt = Math.min(0.05, (now - lastReel) / 1000);
-    lastReel = now;
-    if (!reduced && !pauseAuto && !hoverReels && dragX === null && now > holdUntil) {
-      autoAcc += 28 * dt;   // px/s
-      if (autoAcc >= 1) {
-        const px = Math.floor(autoAcc);
-        autoAcc -= px;
-        if (vids.scrollLeft + vids.clientWidth >= vids.scrollWidth - 2) vids.scrollLeft = 0;
-        else vids.scrollLeft += px;
-      }
-    }
-    requestAnimationFrame(reelTick);
+
+  // ------------------------------------------------------------------ zbraně – karusel „Choose your weapon“
+  // Vlastnosti podle hry (godot/data/boy_animations.json → weapon_stats).
+  const WEAPONS = [
+    ["01_dreveny_kyj", "melee", 1, 1.0, 1.0],
+    ["02_ostnaty_dreveny_kyj", "melee", 2, 0.9, 1.0],
+    ["03_kostena_palice", "throw", 1, 1.2, 0],
+    ["04_kamenna_sekera", "throw", 2, 1.0, 0],
+    ["05_dvojita_sekera", "throw", 2, 0.9, 0],
+    ["06_kamenne_kopi", "melee", 1, 1.1, 1.8],
+    ["07_ohniva_pochoden", "melee", 1, 1.0, 1.0],
+    ["08_bumerang", "boomerang", 1, 1.0, 0],
+    ["09_kamenne_kladivo", "throw", 3, 0.8, 0],
+    ["10_prak", "shoot", 1, 1.25, 0],
+    ["11_kostena_dyka", "throw", 1, 1.6, 0],
+    ["12_ostnaty_palcat", "melee", 3, 0.8, 1.2],
+  ];
+  const wTrack = document.getElementById("weapons");
+  carousel(wTrack, document.getElementById("weapons-prev"), document.getElementById("weapons-next"), 34);
+  let picked = "";
+  function buildWeapons() {
+    wTrack.textContent = "";
+    WEAPONS.forEach(([id, type, dmg, spd, reach]) => {
+      const [name, line] = t("weapons")[id] || T.en.weapons[id];
+      const range = type === "melee" ? Math.min(0.2 + reach * 0.25, 0.7) : type === "shoot" ? 1 : type === "boomerang" ? 0.85 : 0.8;
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "wcard" + (picked === id ? " is-picked" : "");
+      const slot = document.createElement("div");
+      slot.className = "wcard__slot";
+      const img = document.createElement("img");
+      img.src = "assets/weapons/" + id + ".webp";
+      img.alt = "";
+      img.loading = "lazy";
+      img.draggable = false;
+      slot.appendChild(img);
+      const badge = document.createElement("span");
+      badge.className = "wcard__badge wcard__badge--" + type;
+      badge.textContent = t("wtype_" + type);
+      const b = document.createElement("b");
+      b.textContent = name;
+      const p = document.createElement("span");
+      p.className = "wcard__line";
+      p.textContent = line;
+      const stats = document.createElement("div");
+      stats.className = "wcard__stats";
+      [["w_power", dmg / 3], ["w_speed", spd / 1.6], ["w_range", range]].forEach(([k, v]) => {
+        const row = document.createElement("div");
+        const lab = document.createElement("small");
+        lab.textContent = t(k);
+        const bar = document.createElement("i");
+        bar.style.setProperty("--v", Math.max(0.12, Math.min(1, v)).toFixed(2));
+        row.append(lab, bar);
+        stats.appendChild(row);
+      });
+      card.append(badge, slot, b, p, stats);
+      card.addEventListener("click", () => {
+        picked = id;
+        wTrack.querySelectorAll(".wcard").forEach((c) => c.classList.remove("is-picked"));
+        card.classList.add("is-picked");
+        toast(t("w_picked").replace("{w}", name));
+      });
+      wTrack.appendChild(card);
+    });
   }
-  requestAnimationFrame(reelTick);
+
+  // ------------------------------------------------------------------ postavička na konci sekce
+  // Když sekce dojede do obrazu, dole přes ni jednou přejde jedna postavička: střídavě zleva doprava
+  // a zprava doleva, v každé sekci jiný druh.
+  const WALKERS = [["boy_run", 0.5, 7], ["raptor", 0.5, 6], ["girl_run", 0.5, 7], ["boar", 0.7, 5],
+    ["golem", 0.45, 9], ["turtle", 0.7, 9], ["mammoth", 0.5, 10], ["tomas", 0.5, 8], ["snake", 0.6, 10]];
+  if (!reduced) {
+    const walkIO = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      walkIO.unobserve(e.target);
+      const i = Number(e.target.dataset.walk);
+      const [id, sc, secs] = WALKERS[i % WALKERS.length];
+      const ltr = i % 2 === 0;
+      const wrap = document.createElement("div");
+      wrap.className = "walker";
+      const sp = makeSprite(id, sc);
+      if (!ltr) sp.classList.add("flip");
+      wrap.appendChild(sp);
+      e.target.appendChild(wrap);
+      const w = SPR[id].w * sc;
+      const W = e.target.clientWidth;
+      const from = ltr ? -w - 20 : W + 20;
+      const to = ltr ? W + 20 : -w - 20;
+      wrap.animate([{ transform: `translateX(${from}px)` }, { transform: `translateX(${to}px)` }],
+        { duration: secs * 1000, easing: "linear" }).onfinish = () => wrap.remove();
+    }), { threshold: 0.6 });
+    document.querySelectorAll("section:not(.hero), .footer").forEach((sec, i) => {
+      sec.dataset.walk = i;
+      walkIO.observe(sec);
+    });
+  }
 
   // ------------------------------------------------------------------ poklady schované po stránce
   const LOOT = [
