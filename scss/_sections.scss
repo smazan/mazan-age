@@ -2,9 +2,9 @@
 section { padding: 150px 16px; position: relative; }   /* větší odsazení shora a zdola */
 .title {
   font: 700 clamp(44px, 8vw, 92px)/1.02 var(--title); text-align: center; margin: 0 0 48px;
-  color: #fff; letter-spacing: -0.02em;   /* bílá, čistá barva, písmena blíž k sobě */
+  color: var(--ink); letter-spacing: -0.02em;   /* světlé pozadí = tmavý nadpis, čistá barva */
 }
-.title--light { color: #fff; }
+.title--light { color: #fff7e6; }   /* tmavé pozadí = světlý nadpis */
 
 .story { background: transparent; }   /* světlé sekce průhledné – papír a mamuti jsou jedno pozadí body, navazuje přes všechny */
 .story__chapters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1200px; margin: 0 auto; }
@@ -107,3 +107,7 @@ section { padding: 150px 16px; position: relative; }   /* větší odsazení sho
 .footer__parade { height: 120px; position: relative; }
 .footer p { margin: 0; font-size: 15px; }
 .noscript { max-width: 760px; margin: 40px auto; padding: 0 16px; text-align: center; font-weight: 700; }
+
+.chapter__art--img { height: auto; padding: 0; display: block; background: none; }
+.chapter__art--img img { width: 100%; height: auto; display: block; }
+.feature__card { width: 100%; height: auto; border-radius: 16px; border: 3px solid var(--sand-dark); display: block; }
