@@ -1,10 +1,10 @@
 // Mazan Age – landing page. Modul je načtený z js/main.js.
-// „Pick your hero“: vedle kluka a holky řada animovaných póz ze hry a občas zbraň.
+// „Pick your hero“: vedle kluka a holky mřížka animovaných póz ze hry (každá na kolečku).
 import { t, makeSprite, onLang } from "./core.js";
 
 const POSES = {
-  boy: ["walk", "run", ["weapon", "01_dreveny_kyj"], "jump", "attack", "crouch", ["weapon", "09_kamenne_kladivo"], "hit", "dance", "death"],
-  girl: ["walk", "run", "jump", ["weapon", "06_kamenne_kopi"], "attack", "dance", "crouch", ["weapon", "08_bumerang"], "hit", "death"],
+  boy: ["walk", "run", "jump", "attack", "crouch", "hit", "dance", "death"],
+  girl: ["walk", "run", "jump", "attack", "dance", "crouch", "hit", "death"],
 };
 
 function build() {

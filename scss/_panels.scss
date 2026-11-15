@@ -6,7 +6,7 @@
 .panel__head { padding-right: 40px; border-right: 2px solid var(--sand-dark); }
 .panel__body { padding-left: 40px; }
 .panel__title { display: flex; align-items: center; gap: 18px; }
-.panel__title img { width: clamp(96px, 10vw, 150px); height: auto; flex: none; filter: drop-shadow(0 6px 6px rgba(0,0,0,.2)); }
+.panel__title img { width: clamp(110px, 12vw, 190px); height: auto; flex: none; filter: drop-shadow(0 6px 6px rgba(0,0,0,.2)); }
 .panel--row .title { text-align: left; margin: 0; font-size: clamp(36px, 4.4vw, 64px); }
 .panel--row .panel__head p { margin: 14px 0 0; font-size: 19px; max-width: 420px; }
 .panel--row .panel__head p, .panel--row .form-msg { max-width: none; }
@@ -31,7 +31,7 @@
 
 // částky jako kamenné čtverce (obrázky z DATA/Web/tlacitka), po najetí varianta s lístkem
 .panel--row .tips { display: flex; gap: 10px; justify-content: center; flex-wrap: nowrap; margin: 0; }   /* všech 5 částek v jedné řadě */
-.tip { position: relative; display: block; flex: 1 1 0; min-width: 0; max-width: 150px; transition: transform .15s; }
+.tip { position: relative; display: block; flex: 1 1 0; min-width: 0; max-width: 190px; transition: transform .15s; }
 .tip img { display: block; width: 100%; height: auto; }
 .tip .tip__on { position: absolute; inset: 0; opacity: 0; transition: opacity .15s; }
 .tip:hover, .tip:focus-visible { transform: translateY(-5px) scale(1.06); }
@@ -51,6 +51,7 @@
 @media (max-width: 480px) { .panel__title img { width: 84px; } }
 
 // podpora: širší box a víc místa pro částky (až 150 px)
-.support .panel--row { max-width: 1440px; grid-template-columns: 1fr 1.7fr; }
+.support .panel--row, .signup .panel--row { max-width: 1440px; }   /* oba boxy stejně široké jako „Podpoř vývoj“ */
+.support .panel--row { grid-template-columns: 1fr 2fr; }
 .support .panel--row .tips { gap: 16px; }
 @media (max-width: 1100px) { .support .panel--row { grid-template-columns: 1fr; } }

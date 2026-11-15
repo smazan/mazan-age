@@ -3,18 +3,21 @@
 .lineup__row { display: grid; grid-template-columns: 260px 1fr; align-items: center; gap: 28px; text-align: left; }
 .lineup__row .pedestal { margin: 0; }
 .lineup__row .pedestal figcaption { text-align: center; }
-.poses { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px 14px; padding: 6px 0; }   /* 2 řady po 5 */
+.poses { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 14px; padding: 6px 0; }   /* 2 řady po 5 */
 .pose {
   margin: 0; min-width: 0; text-align: center;
   animation: pose-in .6s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--i) * 70ms);
 }
 .pose:nth-child(odd) { translate: 0 -8px; }
-.pose__stage {
-  height: 168px; display: grid; place-items: end center; padding-bottom: 8px;
-  background: radial-gradient(ellipse at 50% 92%, rgba(59, 33, 15, .22) 0 28%, transparent 30%),
-              radial-gradient(circle at 50% 55%, rgba(255, 250, 240, .75), rgba(255, 250, 240, 0) 70%);
-  border-radius: 20px; transition: transform .25s;
+.pose__stage {   /* postavička na kolečku (bez bílé záře) */
+  position: relative; height: 168px; display: grid; place-items: end center; padding-bottom: 14px; transition: transform .25s;
 }
+.pose__stage::before {
+  content: ""; position: absolute; left: 50%; bottom: 6px; translate: -50% 0; z-index: -1;
+  width: min(140px, 92%); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #f3d28f, #e2b06a 70%); border: 3px solid rgba(59, 33, 15, .25);
+}
+.pose__stage .sprite { position: relative; }
 .pose:hover .pose__stage { transform: translateY(-6px) scale(1.06); }
 .pose figcaption { font: 700 17px var(--title); color: var(--ink); margin-top: 4px; }
 .pose--weapon .pose__stage { place-items: center; }
@@ -25,10 +28,10 @@
 
 @media (max-width: 900px) {
   .lineup__row { grid-template-columns: 1fr; text-align: center; }
-  .poses { grid-template-columns: repeat(5, 1fr); }
+  .poses { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 640px) {
-  .poses { grid-template-columns: repeat(3, 1fr); }
+  .poses { grid-template-columns: repeat(2, 1fr); }
   .pose__stage { height: 120px; }
   .pose .sprite { --s: .5 !important; }
 }
