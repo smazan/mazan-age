@@ -59,6 +59,12 @@ section { padding: 150px 16px; position: relative; }   /* větší odsazení sho
   transition: transform .2s;
 }
 .beast:hover { transform: translateY(-6px) rotate(-1deg); }
+.beast__art { display: block; width: 100%; height: auto; aspect-ratio: 247 / 289; object-fit: cover; border-radius: 14px; border: 3px solid var(--sand-dark); margin-bottom: 10px; }
+.monsters__sub { margin-top: 56px; font-size: clamp(28px, 4vw, 44px); }
+.monsters__grid--soon .beast__art { filter: grayscale(1) brightness(0.85); transition: filter .3s ease; }
+.monsters__grid--soon .beast { opacity: .85; transition: opacity .3s ease, transform .2s ease; }
+.monsters__grid--soon .beast:hover { opacity: 1; }
+.monsters__grid--soon .beast:hover .beast__art { filter: none; }
 .beast__stage { height: 150px; display: grid; place-items: end center; border-bottom: 3px dashed var(--sand-dark); margin-bottom: 10px; }
 .beast b { font: 700 28px var(--title); display: block; }
 .beast span { font-size: 15px; }
