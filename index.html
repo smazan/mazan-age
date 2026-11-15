@@ -227,15 +227,21 @@
 <!-- 3. Hrdinové -->
 <section class="heroes">
   <h2 class="title" data-i18n="heroes_title">Pick your hero</h2>
-  <div class="heroes__row">
-    <figure class="pedestal reveal">
-      <div class="sprite" data-sprite="boy_idle" data-hover="boy_attack"></div>
-      <figcaption><b data-i18n="boy">Boy</b><span data-i18n="boy_p">Wild hair, big club, zero fear.</span></figcaption>
-    </figure>
-    <figure class="pedestal reveal">
-      <div class="sprite" data-sprite="girl_idle" data-hover="girl_dance"></div>
-      <figcaption><b data-i18n="girl">Girl</b><span data-i18n="girl_p">Quick, brave and always one jump ahead.</span></figcaption>
-    </figure>
+  <div class="lineup">
+    <div class="lineup__row">
+      <figure class="pedestal reveal">
+        <div class="sprite" data-sprite="boy_idle" data-hover="boy_attack"></div>
+        <figcaption><b data-i18n="boy">Boy</b><span data-i18n="boy_p">Wild hair, big club, zero fear.</span></figcaption>
+      </figure>
+      <div class="poses" data-hero="boy"></div>
+    </div>
+    <div class="lineup__row lineup__row--girl">
+      <figure class="pedestal reveal">
+        <div class="sprite" data-sprite="girl_idle" data-hover="girl_dance"></div>
+        <figcaption><b data-i18n="girl">Girl</b><span data-i18n="girl_p">Quick, brave and always one jump ahead.</span></figcaption>
+      </figure>
+      <div class="poses" data-hero="girl"></div>
+    </div>
   </div>
   <p class="hint" data-i18n="hover_hint">Hover over a hero (or tap) to see them move.</p>
 </section>

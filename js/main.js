@@ -9,9 +9,10 @@ import * as signup from "./modules/signup.js";
 import * as videos from "./modules/videos.js";
 import * as weapons from "./modules/weapons.js";
 import * as walkers from "./modules/walkers.js";
+import * as poses from "./modules/poses.js";
 import * as ending from "./modules/ending.js";
 import * as reveal from "./modules/reveal.js";
 
-[hover, bestiary, tips, countdown, signup, videos, weapons, walkers, ending, reveal].forEach((m) => m.init());
+[hover, bestiary, tips, countdown, signup, videos, weapons, walkers, poses, ending, reveal].forEach((m) => m.init());
 initLangButton();
 applyLang();
