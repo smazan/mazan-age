@@ -1,0 +1,36 @@
+# Mazan Age – nastavení pro Apache (Český hosting). Nahrát spolu s ostatními soubory do kořene webu.
+Options -Indexes
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js .txt .xml .json
+AddType image/webp .webp
+AddType text/javascript .js
+AddType application/wasm .wasm
+
+# HTTPS: až bude v administraci hostingu zapnutý certifikát Let's Encrypt, odkomentuj 3 řádky níže
+# (přesměruje http:// na https://).
+#RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/ld+json text/plain application/xml text/xml image/svg+xml application/wasm application/octet-stream
+</IfModule>
+
+# Cache: obrázky dlouho, CSS a hlavní skripty mají v odkazu ?v=otisk, moduly JS a HTML krátce
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType text/javascript "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/wasm "access plus 7 days"
+</IfModule>

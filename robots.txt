@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smazan.github.io/mazan-age/sitemap.xml
+Sitemap: https://mazanage.com/sitemap.xml

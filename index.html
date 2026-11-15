@@ -3,77 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Zabezpečení: GitHub Pages neumí vlastní HTTP hlavičky, proto CSP a referrer v meta. Povolené zdroje:
-     vlastní soubory, Google Fonts, náhledy a přehrávač YouTube (nocookie), odeslání formuláře na Formspree. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<!-- Šablona – needitovat web/dist/*/index.html, ale tento soubor; sestaví navrh/web_build.py (texty web/lang/*.json).
+     CSP: vlastní soubory, Google Fonts, náhledy a přehrávač YouTube (nocookie), formulář na Formspree.
+     Bez upgrade-insecure-requests: na hostingu bez platného HTTPS by se CSS a JS nenačetly.
+     Verze s Google Tag Managerem (klíč "gtm" v lang JSON) má v CSP navíc domény Googlu – skládá navrh/web_build.py. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-<title>Mazan Age – Prehistoric Platformer Game | Coming 2026</title>
-<meta name="description" content="Mazan Age is a hand-made prehistoric platformer by a lifelong platformer fan: jump through a jungle valley of waterfalls and secret caves, pick one of 12 stone-age weapons and beat raptors, mammoths and a stone golem. Coming by the end of 2026.">
+<title>Mazan Age – Prehistoric 2D Platformer Game | Coming 2026</title>
+<meta name="description" content="Mazan Age is a hand-made 2D prehistoric platformer by a solo developer: jump through a jungle valley of waterfalls and secret caves, pick one of 12 stone-age weapons and beat raptors, mammoths and wild boars. Coming by the end of 2026.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#3b210f">
-<link rel="canonical" href="https://smazan.github.io/mazan-age/">
+<link rel="canonical" href="https://mazanage.com/">
+<link rel="alternate" hreflang="cs" href="https://mazanage.cz/">
+<link rel="alternate" hreflang="en" href="https://mazanage.com/">
+<link rel="alternate" hreflang="ru" href="https://mazanage.ru/">
+<link rel="alternate" hreflang="x-default" href="https://mazanage.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mazan Age">
-<meta property="og:url" content="https://smazan.github.io/mazan-age/">
-<meta property="og:title" content="Mazan Age – Prehistoric Platformer Game">
-<meta property="og:description" content="A hand-made prehistoric platformer by a lifelong platformer fan. 12 weapons, secret caves, dinosaurs. Coming by the end of 2026.">
-<meta property="og:image" content="https://smazan.github.io/mazan-age/assets/og-image.jpg">
+<meta property="og:url" content="https://mazanage.com/">
+<meta property="og:title" content="Mazan Age – Prehistoric 2D Platformer">
+<meta property="og:description" content="A hand-made prehistoric platformer by a lifelong platformer fan. 12 stone-age weapons, 10 secret caves, dinosaurs. Coming by the end of 2026.">
+<meta property="og:image" content="https://mazanage.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mazan Age logo with the cavekid boy and girl in a jungle valley">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="cs_CZ">
+<meta property="og:locale:alternate" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mazan Age – Prehistoric Platformer Game">
-<meta name="twitter:description" content="A hand-made prehistoric platformer. Coming by the end of 2026.">
-<meta name="twitter:image" content="https://smazan.github.io/mazan-age/assets/og-image.jpg">
+<meta name="twitter:title" content="Mazan Age – Prehistoric 2D Platformer">
+<meta name="twitter:description" content="A hand-made prehistoric platformer by a lifelong platformer fan. 12 stone-age weapons, 10 secret caves, dinosaurs. Coming by the end of 2026.">
+<meta name="twitter:image" content="https://mazanage.com/assets/og-image.jpg">
+<meta name="twitter:image:alt" content="Mazan Age logo with the cavekid boy and girl in a jungle valley">
 
-<!-- Strukturovaná data pro vyhledávače a AI asistenty (VideoGame, FAQ, WebSite) -->
 <script type="application/ld+json">
 [
  {
   "@context": "https://schema.org",
   "@type": "VideoGame",
+  "@id": "https://mazanage.com/#game",
   "name": "Mazan Age",
-  "url": "https://smazan.github.io/mazan-age/",
-  "image": "https://smazan.github.io/mazan-age/assets/og-image.jpg",
-  "description": "Mazan Age is a hand-made prehistoric platformer by a lifelong platformer fan: jump through a jungle valley of waterfalls and secret caves, pick one of 12 stone-age weapons and beat raptors, mammoths and a stone golem. Coming by the end of 2026.",
+  "url": "https://mazanage.com/",
+  "image": "https://mazanage.com/assets/og-image.jpg",
+  "description": "Mazan Age is a hand-made 2D prehistoric platformer by a solo developer: jump through a jungle valley of waterfalls and secret caves, pick one of 12 stone-age weapons and beat raptors, mammoths and wild boars. Coming by the end of 2026.",
+  "inLanguage": "en",
   "genre": [
    "Platformer",
    "Action",
    "2D"
   ],
-  "inLanguage": [
-   "en",
-   "cs"
-  ],
   "playMode": "SinglePlayer",
-  "characterAttribute": "Boy and girl cavekid heroes",
+  "numberOfPlayers": {
+   "@type": "QuantitativeValue",
+   "value": 1
+  },
+  "applicationCategory": "Game",
   "sameAs": [
-   "https://www.youtube.com/@mazanage"
+   "https://www.youtube.com/@mazanage",
+   "https://mazanage.cz/",
+   "https://mazanage.ru/"
   ],
   "trailer": {
    "@type": "VideoObject",
    "name": "Mazan Age – Gameplay",
+   "description": "Mazan Age is a hand-made 2D prehistoric platformer by a solo developer and lifelong platformer fan. It is planned for release by the end of 2026.",
    "embedUrl": "https://www.youtube-nocookie.com/embed/whwG_QtT3Us",
+   "contentUrl": "https://www.youtube.com/watch?v=whwG_QtT3Us",
    "thumbnailUrl": "https://i.ytimg.com/vi/whwG_QtT3Us/hqdefault.jpg",
-   "uploadDate": "2026-11-14",
-   "description": "Gameplay of Mazan Age, a prehistoric platformer."
+   "uploadDate": "2026-11-14"
   }
  },
  {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "en",
   "mainEntity": [
    {
     "@type": "Question",
     "name": "What is Mazan Age?",
     "acceptedAnswer": {
      "@type": "Answer",
-     "text": "A 2D prehistoric platformer made by one person, a lifelong fan of platform games. You play as a cavekid boy or girl and travel through a jungle valley full of dinosaurs, monsters and secrets."
+     "text": "Mazan Age is a 2D prehistoric platformer made by one person, a lifelong fan of platform games. You play as a cavekid boy or girl and travel through a jungle valley full of dinosaurs, monsters and secrets."
     }
    },
    {
@@ -81,7 +93,7 @@
     "name": "When does Mazan Age come out?",
     "acceptedAnswer": {
      "@type": "Answer",
-     "text": "The game is planned to be available by the end of 2026. Leave your email on the website to get a message on release."
+     "text": "The game is planned for release by the end of 2026. Leave your email on this website and you will get a message on release day."
     }
    },
    {
@@ -97,7 +109,15 @@
     "name": "Which enemies are in Mazan Age?",
     "acceptedAnswer": {
      "@type": "Answer",
-     "text": "Raptors, a stone golem, pterodactyls that drop rocks, wild boars in groups of three, mammoths, spiky turtles, snakes, piranhas, spiders and a rival caveman."
+     "text": "Wild boars in groups of three, snakes, mammoths, spiky turtles, spiders, pterodactyls that drop rocks, raptors and a rival caveman. More are coming, for example a stone golem, a saber-toothed tiger and a prehistoric crocodile."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "Is Mazan Age a single-player game?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes. Mazan Age is a single-player game: you pick one hero, the cavekid boy or the cavekid girl."
     }
    },
    {
@@ -105,7 +125,7 @@
     "name": "How can I support the development?",
     "acceptedAnswer": {
      "@type": "Answer",
-     "text": "With a one-time tip of 1, 2, 3, 5 or 10 euros on the website, and by subscribing to the YouTube channel @mazanage."
+     "text": "With a one-time tip of 1, 2, 3, 5 or 10 euros on this website, and by subscribing to the YouTube channel @mazanage."
     }
    }
   ]
@@ -114,99 +134,103 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Mazan Age",
-  "url": "https://smazan.github.io/mazan-age/",
+  "url": "https://mazanage.com/",
   "inLanguage": "en"
  }
 ]
 </script>
 <link rel="icon" href="assets/coin_gold.webp" type="image/webp">
 <link rel="apple-touch-icon" href="assets/box_coin.webp">
+<link rel="preload" href="assets/hero_bg2.jpg" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Lilita+One&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Lilita+One&amp;family=Nunito:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&amp;display=swap&amp;text=%F0%9F%87%A8%F0%9F%87%BF%F0%9F%87%B8%F0%9F%87%B0%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A8%F0%9F%87%A6%F0%9F%87%A6%F0%9F%87%BA%F0%9F%87%AE%F0%9F%87%AA%F0%9F%87%B3%F0%9F%87%BF%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%A6%F0%9F%87%B9%F0%9F%87%B5%F0%9F%87%B1%F0%9F%87%AB%F0%9F%87%B7%F0%9F%87%AA%F0%9F%87%B8%F0%9F%87%AE%F0%9F%87%B9%F0%9F%87%B3%F0%9F%87%B1%F0%9F%87%B8%F0%9F%87%AA%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%A7%F0%9F%87%B7%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%B7%F0%9F%87%BA%F0%9F%87%A7%F0%9F%87%BE%F0%9F%87%B0%F0%9F%87%BF%F0%9F%87%BA%F0%9F%87%BF" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=702b94c2">
 </head>
 <body>
 
 <header class="topbar">
-  <a class="topbar__logo" href="#top"><img src="assets/logo.webp" alt="Mazan Age"></a>
-  <nav class="topbar__nav">
-    <a href="#gameplay" data-i18n="nav_video">Gameplay</a>
-    <a href="#story" data-i18n="nav_story">Story</a>
-    <a href="#weapons-sec" data-i18n="nav_weapons">Weapons</a>
-    <a href="#monsters" data-i18n="nav_monsters">Monsters</a>
-    <a href="#signup" data-i18n="nav_signup">Get notified</a>
-    <a href="#support" class="topbar__support" data-i18n="nav_support">Support</a>
+  <a class="topbar__logo" href="#top"><img src="assets/logo.webp" alt="Mazan Age" width="900" height="442"></a>
+  <nav class="topbar__nav" aria-label="Main menu">
+    <a href="#gameplay">Gameplay</a>
+    <a href="#story">Story</a>
+    <a href="#weapons-sec">Weapons</a>
+    <a href="#monsters">Monsters</a>
+    <a href="#faq">FAQ</a>
+    <a href="demo/">Demo</a><a href="#signup">Get notified</a>
+    <a href="#support" class="topbar__support">Support</a>
   </nav>
   <a class="yt-mini" id="yt-top" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="6" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg></a>
-  <button class="lang" id="lang" type="button" aria-label="Switch language">CZ</button>
+  <nav class="langs" aria-label="Language"><a class="lang" href="https://mazanage.cz/" hreflang="cs" lang="cs" title="Čeština">CZ</a><a class="lang" href="https://mazanage.com/" hreflang="en" lang="en" title="English" aria-current="page">EN</a><a class="lang" href="https://mazanage.ru/" hreflang="ru" lang="ru" title="Русский">RU</a></nav>
 </header>
 
+<main>
 <!-- 1. Úvod -->
 <section class="hero" id="top">
   <div class="hero__bg"></div>
-  <img class="hero__char hero__char--boy" src="assets/hero_boy.webp" alt="Cavekid boy with a wooden club" width="521" height="720">
+  <img class="hero__char hero__char--boy" src="assets/hero_boy.webp" alt="Cavekid boy with a wooden club" width="521" height="720" fetchpriority="high">
   <img class="hero__char hero__char--girl" src="assets/hero_girl.webp" alt="Cavekid girl with a bone in her hair" width="538" height="720">
   <div class="hero__content">
     <div class="hero__top">
-      <h1 class="hero__h1"><img class="hero__logo" src="assets/logo.webp" alt="Mazan Age – a prehistoric platformer"></h1>
-      <p class="hero__tag" data-i18n="hero_tag">A prehistoric platformer, hand-made by a lifelong platformer fan.</p>
+      <h1 class="hero__h1"><img class="hero__logo" src="assets/logo.webp" alt="Mazan Age – a prehistoric 2D platformer" width="900" height="442" fetchpriority="high"></h1>
+      <p class="hero__tag">A prehistoric platformer, hand-made by a lifelong platformer fan.</p>
     </div>
     <div class="countdown" id="countdown" aria-live="polite">
       <img class="torch torch--left" src="assets/torch.webp" alt="" aria-hidden="true">
       <img class="torch torch--right" src="assets/torch.webp" alt="" aria-hidden="true">
-      <span class="countdown__label" data-i18n="release">Coming by the end of 2026</span>
+      <span class="countdown__label">Coming by the end of 2026</span>
       <div class="countdown__boxes">
-        <div><b id="cd-d">00</b><small data-i18n="days">days</small></div>
-        <div><b id="cd-h">00</b><small data-i18n="hours">hours</small></div>
-        <div><b id="cd-m">00</b><small data-i18n="minutes">min</small></div>
-        <div><b id="cd-s">00</b><small data-i18n="seconds">sec</small></div>
+        <div><b id="cd-d">00</b><small>days</small></div>
+        <div><b id="cd-h">00</b><small>hours</small></div>
+        <div><b id="cd-m">00</b><small>min</small></div>
+        <div><b id="cd-s">00</b><small>sec</small></div>
       </div>
     </div>
     <div class="hero__cta">
-      <a class="stone-btn stone-btn--gold" href="#signup" data-i18n="cta_notify">Notify me</a>
-      <a class="stone-btn" href="#support" data-i18n="cta_support">Support the game</a>
+      <a class="stone-btn stone-btn--demo" href="demo/">Play the demo</a><a class="stone-btn stone-btn--gold" href="#signup">Notify me</a>
+      <a class="stone-btn" href="#support">Support the game</a>
     </div>
   </div>
 </section>
 
 <!-- Video -->
 <section class="gameplay" id="gameplay">
-  <h2 class="title" data-i18n="video_title">See it in action</h2>
+  <h2 class="title">See it in action</h2>
   <div class="reels">
     <button class="reels__arrow reels__arrow--prev" id="reels-prev" type="button" aria-label="Previous">‹</button>
     <div class="reels__track" id="videos"></div>
     <button class="reels__arrow reels__arrow--next" id="reels-next" type="button" aria-label="Next">›</button>
   </div>
   <div class="gameplay__cta">
-    <a class="stone-btn stone-btn--red" id="yt-channel" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener" data-i18n="channel">All videos on YouTube</a>
-    <a class="stone-btn" id="yt-sub" href="https://www.youtube.com/@mazanage?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="subscribe">Subscribe</a>
+    <a class="stone-btn stone-btn--red" id="yt-channel" href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">All videos on YouTube</a>
+    <a class="stone-btn" id="yt-sub" href="https://www.youtube.com/@mazanage?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a>
   </div>
 </section>
 
 <!-- 2. Příběh -->
 <section class="story" id="story">
-  <h2 class="title" data-i18n="story_title">How it all started</h2>
+  <h2 class="title">How it all started</h2>
   <div class="story__chapters">
     <article class="chapter reveal">
-      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh1.webp" alt="Cavekid playing a platformer on an old TV" loading="lazy" width="404" height="422"><img class="card-on" src="assets/card_pribeh1_on.webp" alt="" aria-hidden="true" loading="lazy"></div>
-      <h3 data-i18n="ch1_t">A kid with a gamepad</h3>
-      <p data-i18n="ch1_p">I grew up on platformers. Jumping over pits, collecting coins, hunting for secret rooms and beating “just one more level” long past bedtime.</p>
+      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh1.webp" alt="Cavekid playing a platformer on an old TV" loading="lazy" decoding="async" width="404" height="422"><img class="card-on" src="assets/card_pribeh1_on.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+      <h3>A kid with a gamepad</h3>
+      <p>I grew up on platformers. Jumping over pits, collecting coins, hunting for secret rooms and playing “just one more level” long past bedtime.</p>
     </article>
     <article class="chapter reveal">
-      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh2.webp" alt="Grown-up caveman building levels in a game editor at night" loading="lazy" width="404" height="422"><img class="card-on" src="assets/card_pribeh2_on.webp" alt="" aria-hidden="true" loading="lazy"></div>
-      <h3 data-i18n="ch2_t">The love never left</h3>
-      <p data-i18n="ch2_p">Years later I still had that itch. So instead of waiting for the platformer I wanted to play, I started building it myself – evening after evening, level after level.</p>
+      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh2.webp" alt="Grown-up caveman building levels in a game editor at night" loading="lazy" decoding="async" width="404" height="422"><img class="card-on" src="assets/card_pribeh2_on.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+      <h3>The love never left</h3>
+      <p>Years later I still had that itch. So instead of waiting for the platformer I wanted to play, I started building it myself – evening after evening, level after level.</p>
     </article>
     <article class="chapter reveal">
-      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh3.webp" alt="Green raptor by a jungle cave with waterfalls" loading="lazy" width="404" height="422"><img class="card-on" src="assets/card_pribeh3_on.webp" alt="" aria-hidden="true" loading="lazy"></div>
-      <h3 data-i18n="ch3_t">Welcome to Mazan Age</h3>
-      <p data-i18n="ch3_p">A prehistoric valley of waterfalls, rope bridges and hidden caves – full of grumpy dinosaurs, angry boars and one very stubborn stone golem.</p>
+      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh3.webp" alt="Green raptor by a jungle cave with waterfalls" loading="lazy" decoding="async" width="404" height="422"><img class="card-on" src="assets/card_pribeh3_on.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+      <h3>Welcome to Mazan Age</h3>
+      <p>A prehistoric valley of waterfalls, rope bridges and hidden caves – full of grumpy dinosaurs, angry boars and one very stubborn stone golem.</p>
     </article>
     <article class="chapter reveal">
-      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh4.webp" alt="Cavegirl jumping for a golden coin" loading="lazy" width="404" height="422"><img class="card-on" src="assets/card_pribeh4_on.webp" alt="" aria-hidden="true" loading="lazy"></div>
-      <h3 data-i18n="ch4_t">And now I need you</h3>
-      <p data-i18n="ch4_p">The game is coming by the end of 2026. Leave your email to play it first – and if you like what you see, a small one-time tip helps me finish it.</p>
+      <div class="chapter__art chapter__art--img"><img src="assets/card_pribeh4.webp" alt="Cavegirl jumping for a golden coin" loading="lazy" decoding="async" width="404" height="422"><img class="card-on" src="assets/card_pribeh4_on.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+      <h3>And now I need you</h3>
+      <p>The game is coming by the end of 2026. Leave your email to be among the first to play – and if you like what you see, a small one-time tip helps me finish it.</p>
     </article>
   </div>
 </section>
@@ -214,41 +238,41 @@
 <section class="support" id="support-top">
   <div class="panel panel--row reveal">
     <div class="panel__head">
-      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title" data-i18n="support_title">Support the development</h2></div>
-      <p data-i18n="support_p">I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
+      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title">Support the development</h2></div>
+      <p>I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
     </div>
     <div class="panel__body">
       <div class="tips"></div>
-      <p class="tips__note" data-i18n="support_note">One-time payment via Stripe.</p>
+      <p class="tips__note">One-time payment via Stripe.</p>
     </div>
   </div>
 </section>
 
 <!-- 3. Hrdinové -->
 <section class="heroes">
-  <h2 class="title" data-i18n="heroes_title">Pick your hero</h2>
+  <h2 class="title">Pick your hero</h2>
   <div class="lineup">
     <div class="lineup__row">
       <figure class="pedestal reveal">
         <div class="sprite" data-sprite="boy_idle" data-hover="boy_attack"></div>
-        <figcaption><b data-i18n="boy">Boy</b><span data-i18n="boy_p">Wild hair, big club, zero fear.</span></figcaption>
+        <figcaption><b>Boy</b><span>Wild hair, big club, zero fear.</span></figcaption>
       </figure>
       <div class="poses" data-hero="boy"></div>
     </div>
     <div class="lineup__row lineup__row--girl">
       <figure class="pedestal reveal">
         <div class="sprite" data-sprite="girl_idle" data-hover="girl_dance"></div>
-        <figcaption><b data-i18n="girl">Girl</b><span data-i18n="girl_p">Quick, brave and always one jump ahead.</span></figcaption>
+        <figcaption><b>Girl</b><span>Quick, brave and always one jump ahead.</span></figcaption>
       </figure>
       <div class="poses" data-hero="girl"></div>
     </div>
   </div>
-  <p class="hint" data-i18n="hover_hint">Hover over a hero (or tap) to see them move.</p>
+  <p class="hint">Hover over a hero (or tap) to see them move.</p>
 </section>
 
 <!-- Zbraně -->
 <section class="weapons" id="weapons-sec">
-  <h2 class="title" data-i18n="weapons_title">Choose your weapon</h2>
+  <h2 class="title">Choose your weapon</h2>
   <div class="reels">
     <button class="reels__arrow reels__arrow--prev" id="weapons-prev" type="button" aria-label="Previous">‹</button>
     <div class="reels__track weapons__track" id="weapons"></div>
@@ -258,31 +282,45 @@
 
 <!-- 4. Příšery -->
 <section class="monsters" id="monsters">
-  <h2 class="title title--light" data-i18n="monsters_title">Who's waiting for you</h2>
+  <h2 class="title title--light">Who&#x27;s waiting for you</h2>
   <div class="monsters__grid" id="bestiary"></div>
-  <h3 class="title title--light monsters__sub" data-i18n="upcoming_title">Coming soon</h3>
+  <h3 class="title title--light monsters__sub">Coming soon</h3>
   <div class="monsters__grid monsters__grid--soon" id="bestiary-soon"></div>
 </section>
 
 <!-- 5. Co ve hře je -->
 <section class="features">
-  <h2 class="title" data-i18n="features_title">What's inside</h2>
+  <h2 class="title">What&#x27;s inside</h2>
   <div class="features__grid">
     <div class="feature reveal">
-      <img class="feature__card" src="assets/card_zbrane.webp" alt="Stone-age club, axe and boomerang" loading="lazy" width="388" height="280">
-      <h3 data-i18n="f1_t">12 stone-age weapons</h3>
-      <p data-i18n="f1_p">Clubs, axes, spears, a boomerang, a slingshot and even a flaming torch.</p>
+      <img class="feature__card" src="assets/card_zbrane.webp" alt="Stone-age club, axe and boomerang" loading="lazy" decoding="async" width="388" height="280">
+      <h3>12 stone-age weapons</h3>
+      <p>Clubs, axes, a spear, a boomerang, a slingshot and even a flaming torch.</p>
     </div>
     <div class="feature reveal">
-      <img class="feature__card" src="assets/card_jeskyne.webp" alt="Mossy cave entrance" loading="lazy" width="388" height="280">
-      <h3 data-i18n="f2_t">Secret caves</h3>
-      <p data-i18n="f2_p">Ten hidden caves packed with coins, diamonds and food. Step in and press up.</p>
+      <img class="feature__card" src="assets/card_jeskyne.webp" alt="Mossy cave entrance" loading="lazy" decoding="async" width="388" height="280">
+      <h3>Secret caves</h3>
+      <p>Ten hidden caves packed with coins, diamonds and food. Stand at the entrance and press Up.</p>
     </div>
     <div class="feature reveal">
-      <img class="feature__card" src="assets/card_poklady.webp" alt="Gold coins and a blue diamond" loading="lazy" width="388" height="280">
-      <h3 data-i18n="f3_t">Coins, diamonds &amp; secrets</h3>
-      <p data-i18n="f3_p">Smash suspicious rocks, climb to the highest floors and find every treasure.</p>
+      <img class="feature__card" src="assets/card_poklady.webp" alt="Gold coins and a blue diamond" loading="lazy" decoding="async" width="388" height="280">
+      <h3>Coins, diamonds &amp; secrets</h3>
+      <p>Smash suspicious rocks, climb to the highest floors and find every treasure.</p>
     </div>
+  </div>
+</section>
+
+<!-- Otázky a odpovědi (stejný obsah jako FAQPage v JSON-LD a llms.txt) -->
+<section class="faq" id="faq">
+  <h2 class="title">Questions &amp; answers</h2>
+  <p class="faq__intro">Mazan Age in short: a 2D single-player platformer set in the Stone Age, made by one developer and planned for release by the end of 2026.</p>
+  <div class="faq__list">
+    <details class="faq__item" open><summary>What is Mazan Age?</summary><p>Mazan Age is a 2D prehistoric platformer made by one person, a lifelong fan of platform games. You play as a cavekid boy or girl and travel through a jungle valley full of dinosaurs, monsters and secrets.</p></details>
+    <details class="faq__item"><summary>When does Mazan Age come out?</summary><p>The game is planned for release by the end of 2026. Leave your email on this website and you will get a message on release day.</p></details>
+    <details class="faq__item"><summary>What can you do in the game?</summary><p>Jump over pits and rope bridges, climb to higher floors, smash secret rocks, explore ten hidden caves, collect coins, diamonds and food, and fight with 12 stone-age weapons such as clubs, axes, a spear, a boomerang, a slingshot and a fire torch.</p></details>
+    <details class="faq__item"><summary>Which enemies are in Mazan Age?</summary><p>Wild boars in groups of three, snakes, mammoths, spiky turtles, spiders, pterodactyls that drop rocks, raptors and a rival caveman. More are coming, for example a stone golem, a saber-toothed tiger and a prehistoric crocodile.</p></details>
+    <details class="faq__item"><summary>Is Mazan Age a single-player game?</summary><p>Yes. Mazan Age is a single-player game: you pick one hero, the cavekid boy or the cavekid girl.</p></details>
+    <details class="faq__item"><summary>How can I support the development?</summary><p>With a one-time tip of 1, 2, 3, 5 or 10 euros on this website, and by subscribing to the YouTube channel @mazanage.</p></details>
   </div>
 </section>
 
@@ -290,16 +328,16 @@
 <section class="signup" id="signup">
   <div class="panel panel--row reveal">
     <div class="panel__head">
-      <div class="panel__title"><img src="assets/box_coin.webp" alt="" width="96" height="100" loading="lazy"><h2 class="title" data-i18n="signup_title">Be the first to play</h2></div>
-      <p data-i18n="signup_p">When Mazan Age is out, I'll send you an email.</p>
+      <div class="panel__title"><img src="assets/box_coin.webp" alt="" width="96" height="100" loading="lazy"><h2 class="title">Be the first to play</h2></div>
+      <p>When Mazan Age is out, I&#x27;ll send you an email.</p>
     </div>
     <form class="panel__body signup__form" id="signup-form" novalidate>
-      <label class="sr" for="email" data-i18n="email_label">Your email</label>
-      <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" data-i18n-ph="email_ph" placeholder="Your email">
+      <label class="sr" for="email">Your email</label>
+      <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email">
       <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="language" id="form-lang" value="en">
-      <button class="pill-btn" type="submit" data-i18n="signup_btn">Notify me</button>
-      <label class="consent"><input type="checkbox" id="consent" required> <span data-i18n="consent">I agree to receive news about Mazan Age.</span></label>
+      <button class="pill-btn" type="submit">Notify me</button>
+      <label class="consent"><input type="checkbox" id="consent" required> <span>I agree to receive news about Mazan Age.</span></label>
       <p class="form-msg" id="form-msg" role="status"></p>
     </form>
   </div>
@@ -309,12 +347,12 @@
 <section class="support" id="support">
   <div class="panel panel--row reveal">
     <div class="panel__head">
-      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title" data-i18n="support_title">Support the development</h2></div>
-      <p data-i18n="support_p">I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
+      <div class="panel__title"><img src="assets/box_diamond.webp" alt="" width="96" height="81" loading="lazy"><h2 class="title">Support the development</h2></div>
+      <p>I make Mazan Age in my free time. Your tip helps pay for art and music.</p>
     </div>
     <div class="panel__body">
       <div class="tips"></div>
-      <p class="tips__note" data-i18n="support_note">One-time payment via Stripe.</p>
+      <p class="tips__note">One-time payment via Stripe.</p>
     </div>
   </div>
 </section>
@@ -322,25 +360,54 @@
 <!-- Konec stránky jako game over ve hře -->
 <section class="ending" id="ending">
   <div class="ending__scene">
-    <img class="ending__ko" src="assets/knocked_out.webp" alt="Knocked-out caveman leaning on a rock" loading="lazy">
+    <img class="ending__ko" src="assets/knocked_out.webp" alt="Knocked-out caveman leaning on a rock" width="580" height="420" loading="lazy" decoding="async">
     <div class="ending__text">
-      <h2 class="title title--light" data-i18n="end_title">Game over?</h2>
-      <p data-i18n="end_p">Not yet! The real adventure starts by the end of 2026.</p>
+      <h2 class="title title--light">Game over?</h2>
+      <p>Not yet! The real adventure starts by the end of 2026.</p>
     </div>
-    <button class="ending__again" id="play-again" type="button" aria-label="Play again"><img class="off" src="assets/play_again_off.webp" alt="Play again"><img class="on" src="assets/play_again.webp" alt=""></button>
+    <button class="ending__again" id="play-again" type="button" aria-label="Play again"><img class="off" src="assets/play_again_off.webp" alt="Play again" width="420" height="158" loading="lazy"><img class="on" src="assets/play_again.webp" alt="" width="420" height="158" loading="lazy"></button>
   </div>
 </section>
+</main>
 
 <noscript><p class="noscript">Mazan Age is a hand-made prehistoric platformer coming by the end of 2026. Turn on JavaScript to see the monsters, weapons and videos, or visit <a href="https://www.youtube.com/@mazanage">our YouTube channel</a>.</p></noscript>
 
 <footer class="footer">
-  <p>© 2026 Mazan Age · <span data-i18n="footer">Made with love for platformers.</span> · <a href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">YouTube @mazanage</a></p>
+  <p>© 2026 Mazan Age · Made with love for platformers. · <a href="https://www.youtube.com/@mazanage" target="_blank" rel="noopener">YouTube @mazanage</a></p>
+  <p class="footer__langs"><a href="https://mazanage.cz/" hreflang="cs" lang="cs" title="Čeština"><span class="flag" aria-hidden="true">🇨🇿</span>www.mazanage.cz</a><a href="https://mazanage.com/" hreflang="en" lang="en" title="English"><span class="flag" aria-hidden="true">🇬🇧</span>www.mazanage.com</a><a href="https://mazanage.ru/" hreflang="ru" lang="ru" title="Русский"><span class="flag" aria-hidden="true">🇷🇺</span>www.mazanage.ru</a></p>
+  <nav class="countries" aria-label="Mazan Age in your country">
+    <ul>
+    <li><a href="https://mazanage.cz/" hreflang="cs"><span class="flag" aria-hidden="true">🇨🇿</span>Czechia</a></li>
+    <li><a href="https://mazanage.cz/" hreflang="cs"><span class="flag" aria-hidden="true">🇸🇰</span>Slovakia</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇺🇸</span>United States</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇬🇧</span>United Kingdom</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇨🇦</span>Canada</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇦🇺</span>Australia</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇮🇪</span>Ireland</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇳🇿</span>New Zealand</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇩🇪</span>Germany</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇦🇹</span>Austria</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇵🇱</span>Poland</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇫🇷</span>France</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇪🇸</span>Spain</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇮🇹</span>Italy</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇳🇱</span>Netherlands</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇸🇪</span>Sweden</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇯🇵</span>Japan</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇧🇷</span>Brazil</a></li>
+    <li><a href="https://mazanage.com/" hreflang="en"><span class="flag" aria-hidden="true">🇮🇳</span>India</a></li>
+    <li><a href="https://mazanage.ru/" hreflang="ru"><span class="flag" aria-hidden="true">🇷🇺</span>Russia</a></li>
+    <li><a href="https://mazanage.ru/" hreflang="ru"><span class="flag" aria-hidden="true">🇧🇾</span>Belarus</a></li>
+    <li><a href="https://mazanage.ru/" hreflang="ru"><span class="flag" aria-hidden="true">🇰🇿</span>Kazakhstan</a></li>
+    <li><a href="https://mazanage.ru/" hreflang="ru"><span class="flag" aria-hidden="true">🇺🇿</span>Uzbekistan</a></li>
+    </ul>
+  </nav>
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="js/config.js"></script>
-<script src="js/sprites.js"></script>
-<script type="module" src="js/main.js"></script>
+<script src="js/config.js?v=702b94c2" defer></script>
+<script src="js/sprites.js?v=702b94c2" defer></script>
+<script type="module" src="js/main.js?v=702b94c2"></script>
 </body>
 </html>

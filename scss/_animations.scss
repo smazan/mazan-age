@@ -1,8 +1,0 @@
-/* ---------- animace ---------- */
-.reveal { opacity: 0; translate: 0 40px; transition: opacity .7s, translate .7s; }
-.reveal.is-in { opacity: 1; translate: 0 0; }
-@keyframes breathe { to { transform: scale(1.06) translate(-1%, -1%); } }
-@keyframes bob { 50% { transform: translateY(-10px) rotate(-1deg); } }
-@keyframes spin { 50% { transform: scaleX(.2); } }
-@keyframes clouds { to { background-position-x: -1200px; } }
-@keyframes ground { to { background-position-x: -120px; } }

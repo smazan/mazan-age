@@ -1,176 +1,168 @@
-// Mazan Age – landing page. Modul je načtený z js/main.js.
-// Texty stránky EN / CZ (primární angličtina). Klíče odpovídají data-i18n v index.html.
+// Vygenerováno navrh/web_build.py z web/lang/en.json – needitovat.
 export const T = {
-  en: {
-    end_title: "Game over?", end_p: "Not yet! The real adventure starts by the end of 2026.", again_toast: "Here we go again!",
-    nav_video: "Gameplay", score: "SCORE", nav_weapons: "Weapons", weapons_title: "Choose your weapon",
-    wtype_melee: "Melee", wtype_throw: "Throw", wtype_shoot: "Shoot", wtype_boomerang: "Returns",
-    w_power: "Power", w_speed: "Speed", w_range: "Range", w_picked: "{w} – great choice!",
-    weapons: {
-      "01_dreveny_kyj": ["Wooden Club", "The classic. Simple and reliable."],
-      "02_ostnaty_dreveny_kyj": ["Spiked Club", "Double damage, a little slower."],
-      "03_kostena_palice": ["Bone Club", "Quick and light – throw it!"],
-      "04_kamenna_sekera": ["Stone Axe", "Spins through the air."],
-      "05_dvojita_sekera": ["Double Axe", "Cuts through a whole line of enemies."],
-      "06_kamenne_kopi": ["Stone Spear", "Longest reach in the valley."],
-      "07_ohniva_pochoden": ["Fire Torch", "Sets enemies on fire."],
-      "08_bumerang": ["Boomerang", "Flies out and comes back."],
-      "09_kamenne_kladivo": ["Stone Hammer", "Heavy throw, huge hit."],
-      "10_prak": ["Slingshot", "Shoots stones from afar."],
-      "11_kostena_dyka": ["Bone Dagger", "Fastest throws of all."],
-      "12_ostnaty_palcat": ["Spiked Mace", "Wide crushing blow."],
-    },
-    runway_hint: "Tap here or press Space to jump!", jumped: "Jumped over", ouch: "Ouch! Jump earlier!",
-    video_title: "See it in action", video_label: "Watch the gameplay on YouTube", subscribe: "Subscribe", channel: "All videos on YouTube", play: "Play video",
-    loot_hint: "Psst… there are coins hidden all over this page. Click them!",
-    loot_got: "Treasure", loot_all: "You found every treasure! You're a true platformer fan.",
-    nav_story: "Story", nav_monsters: "Monsters", nav_signup: "Get notified", nav_support: "Support",
-    hero_tag: "A prehistoric platformer, hand-made by a lifelong platformer fan.",
-    release: "Coming by the end of 2026", days: "days", hours: "hours", minutes: "min", seconds: "sec", out_now: "Out now!",
-    cta_notify: "Notify me", cta_support: "Support the game",
-    story_title: "How it all started",
-    ch1_t: "A kid with a gamepad",
-    ch1_p: "I grew up on platformers. Jumping over pits, collecting coins, hunting for secret rooms and beating “just one more level” long past bedtime.",
-    ch2_t: "The love never left",
-    ch2_p: "Years later I still had that itch. So instead of waiting for the platformer I wanted to play, I started building it myself – evening after evening, level after level.",
-    ch3_t: "Welcome to Mazan Age",
-    ch3_p: "A prehistoric valley of waterfalls, rope bridges and hidden caves – full of grumpy dinosaurs, angry boars and one very stubborn stone golem.",
-    ch4_t: "And now I need you",
-    ch4_p: "The game is coming by the end of 2026. Leave your email to play it first – and if you like what you see, a small one-time tip helps me finish it.",
-    heroes_title: "Pick your hero", boy: "Boy", boy_p: "Wild hair, big club, zero fear.",
-    girl: "Girl", girl_p: "Quick, brave and always one jump ahead.",
-    hover_hint: "Hover over a hero (or tap) to see them move.",
-    monsters_title: "Who's waiting for you",
-    features_title: "What's inside",
-    f1_t: "12 stone-age weapons", f1_p: "Clubs, axes, spears, a boomerang, a slingshot and even a flaming torch.",
-    f2_t: "Secret caves", f2_p: "Ten hidden caves packed with coins, diamonds and food. Step in and press up.",
-    f3_t: "Coins, diamonds & secrets", f3_p: "Smash suspicious rocks, climb to the highest floors and find every treasure.",
-    signup_title: "Be the first to play",
-    signup_p: "When Mazan Age is out, I'll send you an email.",
-    pose_walk: "Walk", pose_run: "Run", pose_jump: "Jump", pose_attack: "Attack", pose_crouch: "Crouch", pose_hit: "Ouch!", pose_dance: "Dance", pose_death: "Knocked out",
-    email_label: "Your email", email_ph: "Your email", signup_btn: "Notify me",
-    consent: "I agree to receive news about Mazan Age.",
-    msg_ok: "You're on the list! See you in the Stone Age.", msg_err: "Something went wrong. Please try again in a moment.",
-    msg_email: "Please enter a valid email.", msg_consent: "Please tick the box to agree.",
-    msg_soon: "Sign-up opens very soon – please come back in a few days.",
-    support_title: "Support the development",
-    support_p: "I make Mazan Age in my free time. Your tip helps pay for art and music.",
-    support_note: "One-time payment via Stripe.",
-    tip_1: "a mammoth snack", tip_2: "a bag of coins", tip_3: "a new weapon", tip_5: "a secret cave", tip_10: "a whole level",
-    tip_soon: "Payments open very soon – thank you for your patience!",
-    footer: "Made with love for platformers.",
-    upcoming_title: "Coming soon",
-    upcoming: {
-      ankylo: ["Ankylosaurus", "Swings a tail club that smashes rocks."],
-      mole: ["Cave Mole", "Digs up right under your feet."],
-      bat: ["Cave Bat", "Swoops down in the dark."],
-      golem: ["Stone Golem", "Slow. Heavy. Holds a grudge."],
-      crab: ["Hermit Crab", "Hides in its shell, snaps when you get close."],
-      plant: ["Carnivorous Plant", "Spits spiky seeds at you."],
-      centipede: ["Giant Centipede", "Crawls along walls and ceilings."],
-      dragonfly: ["Giant Dragonfly", "Zips over the swamp at full speed."],
-      piranha: ["Piranha", "Whatever you do, don't fall in."],
-      aurochs: ["Aurochs", "Charges straight through anything."],
-      croc: ["Prehistoric Crocodile", "Waits in the river with its mouth open."],
-      sabertooth: ["Sabre-toothed Tiger", "The fastest hunter in the jungle."],
-    },
-    beasts: {
-      raptor: ["Raptor", "Fast, hungry and very curious."],
-      golem: ["Stone Golem", "Slow. Heavy. Holds a grudge."],
-      ptero: ["Pterodactyl", "Drops rocks from above. Look up!"],
-      boar: ["Wild Boar", "Never alone – boars come in threes."],
-      mammoth: ["Mammoth", "Big, fluffy and not friendly at all."],
-      turtle: ["Spiky Turtle", "Tough shell – it takes two hits."],
-      snake: ["Snake", "Hides in the grass and waits."],
-      tomas: ["Rival Caveman", "Thinks his club is bigger than yours."],
-      piranha: ["Piranha", "Whatever you do, don't fall in."],
-      spider: ["Spider", "Drops from the trees when you least expect it."],
-    },
-  },
-  cz: {
-    end_title: "Konec hry?", end_p: "Ještě ne! Skutečné dobrodružství začne do konce roku 2026.", again_toast: "Jdeme na to znovu!",
-    nav_video: "Video", score: "SKÓRE", nav_weapons: "Zbraně", weapons_title: "Vyber si zbraň",
-    wtype_melee: "Zblízka", wtype_throw: "Vrhací", wtype_shoot: "Střelná", wtype_boomerang: "Vrací se",
-    w_power: "Síla", w_speed: "Rychlost", w_range: "Dosah", w_picked: "{w} – skvělá volba!",
-    weapons: {
-      "01_dreveny_kyj": ["Dřevěný kyj", "Klasika. Jednoduchý a spolehlivý."],
-      "02_ostnaty_dreveny_kyj": ["Ostnatý kyj", "Dvojnásobná rána, o kousek pomalejší."],
-      "03_kostena_palice": ["Kostěná palice", "Rychlá a lehká – hoď ji!"],
-      "04_kamenna_sekera": ["Kamenná sekera", "Točí se vzduchem."],
-      "05_dvojita_sekera": ["Dvojitá sekera", "Prosekne celou řadu nepřátel."],
-      "06_kamenne_kopi": ["Kamenné kopí", "Nejdelší dosah v údolí."],
-      "07_ohniva_pochoden": ["Ohnivá pochodeň", "Zapálí nepřátele."],
-      "08_bumerang": ["Bumerang", "Odletí a vrátí se."],
-      "09_kamenne_kladivo": ["Kamenné kladivo", "Těžký hod, obrovská rána."],
-      "10_prak": ["Prak", "Střílí kameny zdálky."],
-      "11_kostena_dyka": ["Kostěná dýka", "Nejrychlejší hody ze všech."],
-      "12_ostnaty_palcat": ["Ostnatý palcát", "Široká drtivá rána."],
-    },
-    runway_hint: "Ťukni sem nebo zmáčkni mezerník a skákej!", jumped: "Přeskočeno", ouch: "Au! Skoč dřív!",
-    video_title: "Podívej se, jak to hraje", video_label: "Gameplay na YouTube", subscribe: "Odebírat", channel: "Všechna videa na YouTube", play: "Přehrát video",
-    loot_hint: "Pst… po celé stránce jsou schované mince. Klikej na ně!",
-    loot_got: "Poklad", loot_all: "Našel jsi všechny poklady! Jsi pravý fanoušek plošinovek.",
-    nav_story: "Příběh", nav_monsters: "Příšery", nav_signup: "Dej mi vědět", nav_support: "Podpořit",
-    hero_tag: "Pravěká plošinovka, kterou ručně vyrobil celoživotní fanoušek plošinovek.",
-    release: "Vychází do konce roku 2026", days: "dní", hours: "hodin", minutes: "min", seconds: "s", out_now: "Právě vyšlo!",
-    cta_notify: "Dej mi vědět", cta_support: "Podpořit hru",
-    story_title: "Jak to celé začalo",
-    ch1_t: "Kluk s ovladačem",
-    ch1_p: "Vyrostl jsem na plošinovkách. Přeskakování propastí, sbírání mincí, hledání tajných místností a „ještě jeden level“ dlouho po večerce.",
-    ch2_t: "Láska nevyprchala",
-    ch2_p: "O roky později mě to pořád táhlo. Tak jsem místo čekání na plošinovku, kterou bych si chtěl zahrát, začal stavět vlastní – večer po večeru, level po levelu.",
-    ch3_t: "Vítej v Mazan Age",
-    ch3_p: "Pravěké údolí plné vodopádů, lanových mostů a skrytých jeskyní – a v něm nevrlí dinosauři, naštvaní divočáci a jeden hodně tvrdohlavý kamenný golem.",
-    ch4_t: "A teď potřebuju tebe",
-    ch4_p: "Hra vyjde do konce roku 2026. Nech mi e-mail a zahraješ si ji mezi prvními – a jestli se ti líbí, malý jednorázový příspěvek mi pomůže ji dokončit.",
-    heroes_title: "Vyber si hrdinu", boy: "Kluk", boy_p: "Divoké vlasy, velký kyj, žádný strach.",
-    girl: "Holka", girl_p: "Rychlá, odvážná a vždycky o skok napřed.",
-    hover_hint: "Najeď na hrdinu (nebo ťukni) a uvidíš, jak se hýbe.",
-    monsters_title: "Kdo na tebe čeká",
-    features_title: "Co ve hře najdeš",
-    f1_t: "12 pravěkých zbraní", f1_p: "Kyje, sekery, oštěpy, bumerang, prak a dokonce hořící pochodeň.",
-    f2_t: "Tajné jeskyně", f2_p: "Deset skrytých jeskyní plných mincí, diamantů a jídla. Stoupni si k ústí a zmáčkni šipku nahoru.",
-    f3_t: "Mince, diamanty a tajemství", f3_p: "Rozbíjej podezřelé kameny, vyšplhej do nejvyšších pater a najdi všechny poklady.",
-    signup_title: "Zahraj si mezi prvními",
-    signup_p: "Až Mazan Age vyjde, pošlu ti e-mail.",
-    pose_walk: "Chůze", pose_run: "Běh", pose_jump: "Skok", pose_attack: "Útok", pose_crouch: "Přikrčení", pose_hit: "Au!", pose_dance: "Tanec", pose_death: "Knokaut",
-    email_label: "Tvůj e-mail", email_ph: "Tvůj e-mail", signup_btn: "Dej mi vědět",
-    consent: "Souhlasím se zasíláním novinek o hře Mazan Age.",
-    msg_ok: "Jsi na seznamu! Uvidíme se v době kamenné.", msg_err: "Něco se pokazilo. Zkus to prosím za chvíli znovu.",
-    msg_email: "Zadej prosím platný e-mail.", msg_consent: "Zaškrtni prosím souhlas.",
-    msg_soon: "Přihlašování se otevře už brzy – zkus to prosím za pár dní.",
-    support_title: "Podpoř vývoj",
-    support_p: "Mazan Age tvořím ve volném čase. Tvůj příspěvek pomůže zaplatit grafiku a hudbu.",
-    support_note: "Jednorázová platba přes Stripe.",
-    tip_1: "svačina pro mamuta", tip_2: "měšec mincí", tip_3: "nová zbraň", tip_5: "tajná jeskyně", tip_10: "celý level",
-    tip_soon: "Platby se otevřou už brzy – díky za trpělivost!",
-    footer: "Vyrobeno s láskou k plošinovkám.",
-    upcoming_title: "Připravujeme",
-    upcoming: {
-      ankylo: ["Ankylosaurus", "Ocasním kyjem rozbíjí kameny."],
-      mole: ["Jeskynní krtek", "Vyhrabe se ti přímo pod nohama."],
-      bat: ["Jeskynní netopýr", "Ve tmě se snese shora."],
-      golem: ["Kamenný golem", "Pomalý. Těžký. Nezapomíná."],
-      crab: ["Krab poustevník", "Schová se v ulitě a cvakne, když jdeš blízko."],
-      plant: ["Masožravá kytka", "Plive po tobě ostnatá semínka."],
-      centipede: ["Obří stonožka", "Leze po stěnách i po stropě."],
-      dragonfly: ["Obří vážka", "Prolétne bažinou plnou rychlostí."],
-      piranha: ["Piraňa", "Hlavně nespadni do vody."],
-      aurochs: ["Pratur", "Prorazí cokoli, co mu stojí v cestě."],
-      croc: ["Pravěký krokodýl", "Čeká v řece s otevřenou tlamou."],
-      sabertooth: ["Šavlozubý tygr", "Nejrychlejší lovec v džungli."],
-    },
-    beasts: {
-      raptor: ["Raptor", "Rychlý, hladový a hodně zvědavý."],
-      golem: ["Kamenný golem", "Pomalý. Těžký. Nezapomíná."],
-      ptero: ["Ptakoještěr", "Shazuje kameny. Dívej se nahoru!"],
-      boar: ["Divočák", "Nikdy sám – divočáci chodí po třech."],
-      mammoth: ["Mamut", "Velký, chlupatý a vůbec ne přátelský."],
-      turtle: ["Ostnatá želva", "Tvrdý krunýř – potřebuje dvě rány."],
-      snake: ["Had", "Číhá v trávě a čeká."],
-      tomas: ["Soupeř z kmene", "Myslí si, že má větší kyj než ty."],
-      piranha: ["Piraňa", "Hlavně nespadni do vody."],
-      spider: ["Pavouk", "Spadne ze stromu, když to nejmíň čekáš."],
-    },
-  },
+ "again_toast": "Here we go again!",
+ "wtype_melee": "Melee",
+ "wtype_throw": "Throw",
+ "wtype_shoot": "Shoot",
+ "wtype_boomerang": "Returns",
+ "w_power": "Power",
+ "w_speed": "Speed",
+ "w_range": "Range",
+ "w_picked": "{w} – great choice!",
+ "weapons": {
+  "01_dreveny_kyj": [
+   "Wooden Club",
+   "The classic. Simple and reliable."
+  ],
+  "02_ostnaty_dreveny_kyj": [
+   "Spiked Club",
+   "Double damage, a little slower."
+  ],
+  "03_kostena_palice": [
+   "Bone Club",
+   "Quick and light – throw it!"
+  ],
+  "04_kamenna_sekera": [
+   "Stone Axe",
+   "Spins through the air."
+  ],
+  "05_dvojita_sekera": [
+   "Double Axe",
+   "Cuts through a whole line of enemies."
+  ],
+  "06_kamenne_kopi": [
+   "Stone Spear",
+   "Longest reach in the valley."
+  ],
+  "07_ohniva_pochoden": [
+   "Fire Torch",
+   "Sets enemies on fire."
+  ],
+  "08_bumerang": [
+   "Boomerang",
+   "Flies out and comes back."
+  ],
+  "09_kamenne_kladivo": [
+   "Stone Hammer",
+   "Heavy throw, huge hit."
+  ],
+  "10_prak": [
+   "Slingshot",
+   "Shoots stones from afar."
+  ],
+  "11_kostena_dyka": [
+   "Bone Dagger",
+   "Fastest throws of all."
+  ],
+  "12_ostnaty_palcat": [
+   "Spiked Mace",
+   "Wide crushing blow."
+  ]
+ },
+ "play": "Play video",
+ "video_titles": {},
+ "out_now": "Out now!",
+ "pose_walk": "Walk",
+ "pose_run": "Run",
+ "pose_jump": "Jump",
+ "pose_attack": "Attack",
+ "pose_crouch": "Crouch",
+ "pose_hit": "Ouch!",
+ "pose_dance": "Dance",
+ "pose_death": "Knocked out",
+ "msg_ok": "You're on the list! See you in the Stone Age.",
+ "msg_err": "Something went wrong. Please try again in a moment.",
+ "msg_email": "Please enter a valid email.",
+ "msg_consent": "Please tick the box to agree.",
+ "msg_soon": "Sign-up opens very soon – please come back in a few days.",
+ "tip_1": "a mammoth snack",
+ "tip_2": "a bag of coins",
+ "tip_3": "a new weapon",
+ "tip_5": "a secret cave",
+ "tip_10": "a whole level",
+ "tip_soon": "Payments open very soon – thank you for your patience!",
+ "upcoming": {
+  "ankylo": [
+   "Ankylosaurus",
+   "Swings a tail club that smashes rocks."
+  ],
+  "mole": [
+   "Cave Mole",
+   "Digs up right under your feet."
+  ],
+  "bat": [
+   "Cave Bat",
+   "Swoops down in the dark."
+  ],
+  "golem": [
+   "Stone Golem",
+   "Slow. Heavy. Holds a grudge."
+  ],
+  "crab": [
+   "Hermit Crab",
+   "Hides in its shell and snaps when you get close."
+  ],
+  "plant": [
+   "Carnivorous Plant",
+   "Spits spiky seeds at you."
+  ],
+  "centipede": [
+   "Giant Centipede",
+   "Crawls along walls and ceilings."
+  ],
+  "dragonfly": [
+   "Giant Dragonfly",
+   "Zips over the swamp at full speed."
+  ],
+  "piranha": [
+   "Piranha",
+   "Whatever you do, don't fall in."
+  ],
+  "aurochs": [
+   "Aurochs",
+   "Charges straight through anything."
+  ],
+  "croc": [
+   "Prehistoric Crocodile",
+   "Waits in the river with its jaws open."
+  ],
+  "sabertooth": [
+   "Saber-toothed Tiger",
+   "The fastest hunter in the jungle."
+  ]
+ },
+ "beasts": {
+  "raptor": [
+   "Raptor",
+   "Fast, hungry and very curious."
+  ],
+  "ptero": [
+   "Pterodactyl",
+   "Drops rocks from above. Look up!"
+  ],
+  "boar": [
+   "Wild Boar",
+   "Never alone – boars come in threes."
+  ],
+  "mammoth": [
+   "Mammoth",
+   "Big, fluffy and not friendly at all."
+  ],
+  "turtle": [
+   "Spiky Turtle",
+   "Tough shell – it takes two hits."
+  ],
+  "snake": [
+   "Snake",
+   "Hides in the grass and waits."
+  ],
+  "tomas": [
+   "Rival Caveman",
+   "Thinks his club is bigger than yours."
+  ],
+  "spider": [
+   "Spider",
+   "Drops from the trees when you least expect it."
+  ]
+ }
 };
