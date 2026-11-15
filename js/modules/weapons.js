@@ -1,6 +1,6 @@
 // Mazan Age – landing page. Modul je načtený z js/main.js.
 // Karusel „Choose your weapon“ – vlastnosti podle hry (godot/data/boy_animations.json → weapon_stats).
-import { t, T, toast, onLang } from "./core.js";
+import { t, toast, onLang } from "./core.js";
 import { carousel } from "./carousel.js";
 
 export function init() {
@@ -25,7 +25,7 @@ export function init() {
   function buildWeapons() {
     wTrack.textContent = "";
     WEAPONS.forEach(([id, type, dmg, spd, reach]) => {
-      const [name, line] = t("weapons")[id] || T.en.weapons[id];
+      const [name, line] = t("weapons")[id] || [id, ""];
       const range = type === "melee" ? Math.min(0.2 + reach * 0.25, 0.7) : type === "shoot" ? 1 : type === "boomerang" ? 0.85 : 0.8;
       const card = document.createElement("button");
       card.type = "button";

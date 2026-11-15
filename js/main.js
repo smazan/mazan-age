@@ -1,6 +1,6 @@
-// Mazan Age – landing page. Vstupní modul: načte části stránky a nastaví jazyk.
+// Mazan Age – landing page. Vstupní modul: načte části stránky a vykreslí je (texty jsou v js/modules/texts.js dané jazykové verze).
 // Nastavení (Formspree, Stripe, YouTube, datum vydání) je v js/config.js, sprity v js/sprites.js.
-import { applyLang, initLangButton } from "./modules/core.js";
+import { initPage } from "./modules/core.js";
 import * as hover from "./modules/sprites-hover.js";
 import * as bestiary from "./modules/bestiary.js";
 import * as tips from "./modules/tips.js";
@@ -14,5 +14,4 @@ import * as ending from "./modules/ending.js";
 import * as reveal from "./modules/reveal.js";
 
 [hover, bestiary, tips, countdown, signup, videos, weapons, walkers, poses, ending, reveal].forEach((m) => m.init());
-initLangButton();
-applyLang();
+initPage();

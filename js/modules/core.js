@@ -5,37 +5,18 @@ export const CFG = window.MAZAN_CONFIG || {};      // js/config.js (Formspree, S
 export const SPR = window.MAZAN_SPRITES || {};     // js/sprites.js (animační pásy)
 export const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// localStorage jen na pohodlí (jazyk) – v soukromém okně může chybět
-export const store = {
-  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* bez úložiště */ } },
-};
-
-let lang = store.get("mazan-lang") || "en";   // primární jazyk angličtina, CZ jen přepínačem
-export const getLang = () => lang;
-export const t = (key) => (T[lang] && T[lang][key]) || T.en[key] || key;
+// Každá jazyková verze webu (mazanage.cz / .com / .ru) má svůj texts.js – sestaví ho navrh/web_build.py
+// z web/lang/<jazyk>.json. Žádné přepínání jazyka, texty v HTML jsou už přeložené.
+export const t = (key) => (T[key] !== undefined ? T[key] : key);
 export { T };
 
-// Co se má překreslit při změně jazyka (bestiář, zbraně, podpora, odpočet…)
+// Co se má vykreslit po načtení (bestiář, zbraně, podpora, odpočet…)
 const langHooks = [];
 export const onLang = (fn) => { langHooks.push(fn); };
 
-export function applyLang() {
-  document.documentElement.lang = lang === "cz" ? "cs" : "en";
-  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
-  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
-  document.getElementById("lang").textContent = lang === "cz" ? "EN" : "CZ";
-  document.getElementById("form-lang").value = lang;
+export function initPage() {
   langHooks.forEach((fn) => fn());
   splitTitles();
-}
-
-export function initLangButton() {
-  document.getElementById("lang").addEventListener("click", () => {
-    lang = lang === "cz" ? "en" : "cz";
-    store.set("mazan-lang", lang);
-    applyLang();
-  });
 }
 
 // Nadpisy: každé písmeno zvlášť, při zobrazení naskáčou jedno po druhém.

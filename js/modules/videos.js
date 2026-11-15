@@ -13,7 +13,9 @@ export function init() {
   const vids = document.getElementById("videos");
   const reelCtl = carousel(vids, document.getElementById("reels-prev"), document.getElementById("reels-next"), 28);
   let playingCard = null;
-  (CFG.youtubeVideos || []).forEach((v) => {
+  const titles = t("video_titles");
+  (CFG.youtubeVideos || []).forEach((v0) => {
+    const v = { id: v0.id, title: (titles && titles[v0.id]) || v0.title };   // název videa v jazyce verze
     const card = document.createElement("figure");
     card.className = "reel";
     const scr = document.createElement("button");

@@ -1,6 +1,6 @@
 // Mazan Age – landing page. Modul je načtený z js/main.js.
 // Bestiář – karty aktuálních nepřátel (obrázky z DATA/Web/nepratele, ořez bez zapečeného textu).
-import { t, T, onLang } from "./core.js";
+import { t, onLang } from "./core.js";
 
 export function init() {
   const BEASTS = ["boar", "snake", "mammoth", "turtle", "spider", "ptero", "raptor", "tomas"];
@@ -14,7 +14,7 @@ export function init() {
     if (!grid) return;
     grid.textContent = "";
     ids.forEach((id) => {
-      const [name, line] = t(key)[id] || T.en[key][id];
+      const [name, line] = t(key)[id] || [id, ""];
       const card = document.createElement("div");
       card.className = "beast reveal is-in";
       const img = document.createElement("img");
