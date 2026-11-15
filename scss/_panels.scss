@@ -1,6 +1,6 @@
 // Boxy „Zahraj si mezi prvními“ a „Podpoř vývoj“ – vlevo ikona, nadpis a text, vpravo formulář / částky.
 .panel--row {
-  display: grid; grid-template-columns: 1fr 1fr; align-items: center; text-align: left;
+  display: grid; grid-template-columns: 1fr 1.25fr; align-items: center; text-align: left;
   max-width: 1180px; padding: 34px 44px;
 }
 .panel__head { padding-right: 40px; border-right: 2px solid var(--sand-dark); }
@@ -31,7 +31,7 @@
 
 // částky jako kamenné čtverce (obrázky z DATA/Web/tlacitka), po najetí varianta s lístkem
 .panel--row .tips { display: flex; gap: 10px; justify-content: center; flex-wrap: nowrap; margin: 0; }   /* všech 5 částek v jedné řadě */
-.tip { position: relative; display: block; flex: 1 1 0; min-width: 0; max-width: 104px; transition: transform .15s; }
+.tip { position: relative; display: block; flex: 1 1 0; min-width: 0; max-width: 150px; transition: transform .15s; }
 .tip img { display: block; width: 100%; height: auto; }
 .tip .tip__on { position: absolute; inset: 0; opacity: 0; transition: opacity .15s; }
 .tip:hover, .tip:focus-visible { transform: translateY(-5px) scale(1.06); }
@@ -40,10 +40,11 @@
 .panel--row .tips__note { text-align: center; margin: 18px 0 0; font-size: 17px; opacity: .85; }
 #support-top { padding-top: 0; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .panel--row { grid-template-columns: 1fr; padding: 28px 22px; }
   .panel__head { padding: 0 0 22px; border-right: 0; border-bottom: 2px solid var(--sand-dark); margin-bottom: 22px; }
   .panel__body { padding: 0; }
-  .panel--row .tips { flex-wrap: wrap; }
-  .tip { flex: 0 0 76px; }
+  .panel--row .tips { flex-wrap: nowrap; }
+  .tip { flex: 0 1 120px; }
 }
+@media (max-width: 480px) { .panel--row .tips { flex-wrap: wrap; } .tip { flex: 0 0 92px; } }

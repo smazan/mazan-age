@@ -56,3 +56,19 @@
 .hero .hero__tag { margin: 44px auto 48px; }   /* víc místa nad a pod podtitulkem */
 .hero .hero__cta { align-self: start; margin-top: 28px; }
 .hero .hero__logo { width: min(460px, 84vw, 33vh); }
+
+// nízká okna (notebook, tablet na šířku): menší logo a odpočet, aby se úvod vešel na výšku okna
+@media (max-height: 860px) {
+  .hero .hero__logo { width: min(420px, 84vw, 26vh); }
+  .hero .hero__tag { margin: 22px auto 26px; font-size: clamp(18px, 2.2vw, 24px); }
+  .hero .hero__cta { margin-top: 22px; }
+  .countdown__boxes b { font-size: clamp(32px, 4.4vw, 48px); }
+  .countdown__boxes div { min-width: 86px; padding: 6px 10px 4px; }
+  .countdown__label { font-size: clamp(20px, 2.2vw, 26px); }
+}
+
+// užší okna: postavy menší a víc u kraje, aby nepřekrývaly odpočet
+@media (max-width: 1200px) { .hero__char { max-width: 23vw; } .hero__char--boy { left: 0; } .hero__char--girl { right: 0; } }
+@media (max-width: 900px) and (min-width: 641px) {
+  .hero__char { top: auto; bottom: 0; translate: none; height: 30vh; max-width: 34vw; }
+}

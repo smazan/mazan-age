@@ -36,3 +36,16 @@
   .heroes__row { gap: 30px; }
   .stone-btn { font-size: 21px; padding: 12px 22px; }
 }
+
+// mobil: obsah úvodu v šířce okna, pochodně uvnitř, částky 3 + 2
+@media (max-width: #{$bp-mobile}) {
+  .hero__content { width: 100%; min-width: 0; padding-left: 0; padding-right: 0; }
+  .countdown { max-width: calc(100vw - 56px); }
+  .countdown__boxes div { min-width: 0; flex: 1 1 0; }
+  .torch--left { left: -18px; }
+  .torch--right { right: -18px; }
+}
+@media (max-width: 480px) {
+  .panel--row .tips { flex-wrap: wrap; gap: 12px; }
+  .tip { flex: 0 0 calc(33.33% - 12px); max-width: 100px; }
+}

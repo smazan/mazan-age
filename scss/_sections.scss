@@ -1,7 +1,7 @@
 /* ---------- sekce ---------- */
 section { padding: 150px 16px; position: relative; }   /* větší odsazení shora a zdola */
 .title {
-  font: 700 clamp(44px, 8vw, 92px)/1.02 var(--title); text-align: center; margin: 0 0 48px;
+  font: 700 clamp(44px, 8vw, 92px)/1.02 var(--title); text-align: center; margin: 0 0 80px;   /* větší mezera pod nadpisem */
   color: var(--ink); letter-spacing: -0.02em;   /* světlé pozadí = tmavý nadpis, čistá barva */
 }
 .title--light { color: #fff7e6; }   /* tmavé pozadí = světlý nadpis */
@@ -111,3 +111,14 @@ section { padding: 150px 16px; position: relative; }   /* větší odsazení sho
 .chapter__art--img { height: auto; padding: 0; display: block; background: none; }
 .chapter__art--img img { width: 100%; height: auto; display: block; }
 .feature__card { width: 100%; height: auto; border-radius: 16px; border: 3px solid var(--sand-dark); display: block; }
+
+// Příběh: po najetí se obrázek vymění za variantu (card_*_on.webp)
+.chapter__art--img { position: relative; overflow: hidden; }
+.chapter__art--img .card-on { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; }
+.chapter:hover .card-on, .chapter:focus-within .card-on { opacity: 1; }
+.chapter { transition: transform .25s; }
+.chapter:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
+// Co ve hře najdeš: po najetí se karta trochu natočí
+.feature { transition: transform .25s cubic-bezier(.3, 1.4, .5, 1), box-shadow .25s; }
+.feature:nth-child(odd):hover { transform: rotate(-3deg) translateY(-8px) scale(1.03); }
+.feature:nth-child(even):hover { transform: rotate(3deg) translateY(-8px) scale(1.03); }
