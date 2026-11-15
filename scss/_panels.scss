@@ -6,7 +6,7 @@
 .panel__head { padding-right: 40px; border-right: 2px solid var(--sand-dark); }
 .panel__body { padding-left: 40px; }
 .panel__title { display: flex; align-items: center; gap: 18px; }
-.panel__title img { width: 96px; height: auto; flex: none; filter: drop-shadow(0 6px 6px rgba(0,0,0,.2)); }
+.panel__title img { width: clamp(96px, 10vw, 150px); height: auto; flex: none; filter: drop-shadow(0 6px 6px rgba(0,0,0,.2)); }
 .panel--row .title { text-align: left; margin: 0; font-size: clamp(36px, 4.4vw, 64px); }
 .panel--row .panel__head p { margin: 14px 0 0; font-size: 19px; max-width: 420px; }
 .panel--row .panel__head p, .panel--row .form-msg { max-width: none; }
@@ -48,3 +48,9 @@
   .tip { flex: 0 1 120px; }
 }
 @media (max-width: 480px) { .panel--row .tips { flex-wrap: wrap; } .tip { flex: 0 0 92px; } }
+@media (max-width: 480px) { .panel__title img { width: 84px; } }
+
+// podpora: širší box a víc místa pro částky (až 150 px)
+.support .panel--row { max-width: 1440px; grid-template-columns: 1fr 1.7fr; }
+.support .panel--row .tips { gap: 16px; }
+@media (max-width: 1100px) { .support .panel--row { grid-template-columns: 1fr; } }

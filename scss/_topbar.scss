@@ -24,3 +24,8 @@
 // menší okna: menší položky, na tabletu na výšku a mobilu jen „Podpořit“
 @media (max-width: 1200px) { .topbar__nav a { font-size: 19px; padding: 6px 11px; } .topbar__logo img { height: 46px; } }
 @media (max-width: 900px) { .topbar__nav a:not(.topbar__support) { display: none; } }
+
+// přepínač jazyka větší
+.lang { font-size: 22px; padding: 7px 14px; border-radius: 14px; border-width: 3px; min-width: 56px; }
+.lang:hover { background: var(--gold); }
+@media (max-width: 640px) { .lang { font-size: 18px; padding: 5px 11px; min-width: 46px; } }
