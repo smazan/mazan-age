@@ -1,5 +1,5 @@
 // Mazan Age – landing page. Modul je načtený z js/main.js.
-// Podpora 1–10 € přes Stripe Payment Links (odkazy v js/config.js). Boxů s podporou může být víc (.tips).
+// Podpora 1–10 € přes Ko-fi (CFG.kofiUrl), jinak Stripe Payment Links (odkazy v js/config.js). Boxů s podporou může být víc (.tips).
 import { CFG, t, onLang } from "./core.js";
 
 const AMOUNTS = [1, 2, 3, 5, 10];
@@ -9,7 +9,7 @@ function buildTips() {
     const note = box.parentElement.querySelector(".tips__note");
     box.textContent = "";
     AMOUNTS.forEach((a) => {
-      const link = (CFG.stripeLinks || {})[a] || "";
+      const link = CFG.kofiUrl || (CFG.stripeLinks || {})[a] || "";
       const btn = document.createElement("a");
       btn.className = "tip";
       btn.setAttribute("aria-label", a + " € – " + t("tip_" + a));
@@ -41,6 +41,18 @@ function buildTips() {
       }
       box.appendChild(btn);
     });
+    // Ko-fi: libovolná částka (i vyšší) – tlačítko pod řadou částek
+    const old = box.parentElement.querySelector(".tips__any");
+    if (old) old.remove();
+    if (CFG.kofiUrl) {
+      const any = document.createElement("a");
+      any.className = "game-btn game-btn--orange tips__any";
+      any.href = CFG.kofiUrl;
+      any.target = "_blank";
+      any.rel = "noopener";
+      any.textContent = t("tip_any");
+      box.after(any);
+    }
   });
 }
 

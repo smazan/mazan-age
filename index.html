@@ -7,7 +7,7 @@
      CSP: vlastní soubory, Google Fonts, náhledy a přehrávač YouTube (nocookie), formulář na Formspree.
      Bez upgrade-insecure-requests: na hostingu bez platného HTTPS by se CSS a JS nenačetly.
      Verze s Google Tag Managerem (klíč "gtm" v lang JSON) má v CSP navíc domény Googlu – skládá navrh/web_build.py. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io https://mazanage.cz; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>Mazan Age – Prehistoric 2D Platformer Game | Coming 2026</title>
@@ -146,7 +146,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Lilita+One&amp;family=Nunito:wght@500;700;800&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&amp;display=swap&amp;text=%F0%9F%87%A8%F0%9F%87%BF%F0%9F%87%B8%F0%9F%87%B0%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A8%F0%9F%87%A6%F0%9F%87%A6%F0%9F%87%BA%F0%9F%87%AE%F0%9F%87%AA%F0%9F%87%B3%F0%9F%87%BF%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%A6%F0%9F%87%B9%F0%9F%87%B5%F0%9F%87%B1%F0%9F%87%AB%F0%9F%87%B7%F0%9F%87%AA%F0%9F%87%B8%F0%9F%87%AE%F0%9F%87%B9%F0%9F%87%B3%F0%9F%87%B1%F0%9F%87%B8%F0%9F%87%AA%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%A7%F0%9F%87%B7%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%B7%F0%9F%87%BA%F0%9F%87%A7%F0%9F%87%BE%F0%9F%87%B0%F0%9F%87%BF%F0%9F%87%BA%F0%9F%87%BF" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=fef1f093">
+<link rel="stylesheet" href="css/style.css?v=b7479473">
 </head>
 <body>
 
@@ -189,7 +189,7 @@
     </div>
     <div class="hero__cta">
       <div class="hero__cta-row"><a class="game-btn game-btn--orange" href="#signup">Notify me</a><a class="game-btn game-btn--clay" href="#support">Support the game</a></div>
-      <a class="game-btn game-btn--red game-btn--big" href="demo/"><span class="game-btn__play" aria-hidden="true"></span>Play the demo</a><small class="hero__demo-len">3 min.</small>
+      <a class="game-btn game-btn--red game-btn--big" href="demo/"><span class="game-btn__play" aria-hidden="true"></span>Play the demo</a><small class="hero__demo-len">up to 33 % of the level</small><span class="hero__demo-count" id="demo-count" hidden><span class="hero__demo-bar"><span id="demo-bar"></span></span><small id="demo-count-text"></small></span>
     </div>
   </div>
 </section>
@@ -243,7 +243,7 @@
     </div>
     <div class="panel__body">
       <div class="tips"></div>
-      <p class="tips__note">One-time payment via Stripe.</p>
+      <p class="tips__note">One-time tip via Ko-fi – card or PayPal.</p>
     </div>
   </div>
 </section>
@@ -310,6 +310,16 @@
   </div>
 </section>
 
+<!-- Žebříček 50 nejlepších hráčů (web/api/zebricek.php na mazanage.cz, modul js/modules/board.js) -->
+<section class="board" id="board">
+  <h2 class="title">Top players</h2>
+  <p class="board__intro">The 50 best scores from the game and the demo. Enter a nickname at the end of a run to get on the list.</p>
+  <div class="board__wrap reveal">
+    <ol class="board__list" id="board-list"></ol>
+    <p class="board__msg" id="board-msg" role="status"></p>
+  </div>
+</section>
+
 <!-- Otázky a odpovědi (stejný obsah jako FAQPage v JSON-LD a llms.txt) -->
 <section class="faq" id="faq">
   <h2 class="title">Questions &amp; answers</h2>
@@ -352,7 +362,7 @@
     </div>
     <div class="panel__body">
       <div class="tips"></div>
-      <p class="tips__note">One-time payment via Stripe.</p>
+      <p class="tips__note">One-time tip via Ko-fi – card or PayPal.</p>
     </div>
   </div>
 </section>
@@ -406,8 +416,8 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="js/config.js?v=fef1f093" defer></script>
-<script src="js/sprites.js?v=fef1f093" defer></script>
-<script type="module" src="js/main.js?v=fef1f093"></script>
+<script src="js/config.js?v=b7479473" defer></script>
+<script src="js/sprites.js?v=b7479473" defer></script>
+<script type="module" src="js/main.js?v=b7479473"></script>
 </body>
 </html>

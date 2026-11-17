@@ -80,6 +80,14 @@ export const T = {
  "tip_3": "a new weapon",
  "tip_5": "a secret cave",
  "tip_10": "a whole level",
+ "board_loading": "Loading the leaderboard…",
+ "board_empty": "No scores yet – be the first!",
+ "board_offline": "The leaderboard is offline right now.",
+ "board_nick": "Player",
+ "board_score": "Score",
+ "board_pct": "Progress",
+ "demo_count": "Demo played {n} times · goal {goal}",
+ "tip_any": "Any amount",
  "tip_soon": "Payments open very soon – thank you for your patience!",
  "upcoming": {
   "ankylo": [

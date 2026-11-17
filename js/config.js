@@ -5,7 +5,11 @@ window.MAZAN_CONFIG = {
   // a každá ti přijde e-mailem. Prázdné = formulář zatím nic neodešle.
   formspreeId: "",
 
-  // Stripe Payment Links (dashboard.stripe.com → Payment Links): jeden odkaz na každou částku.
+  // Ko-fi (ko-fi.com): veřejná stránka s dary, např. "https://ko-fi.com/mazanage".
+  // Vyplněné = všechna tlačítka 1–10 € vedou sem (částku si dárce potvrdí na Ko-fi, platba kartou nebo PayPal).
+  kofiUrl: "https://ko-fi.com/mazanage",
+
+  // Stripe Payment Links (dashboard.stripe.com → Payment Links): jeden odkaz na každou částku – použije se, jen když kofiUrl je prázdné.
   // Prázdný odkaz = tlačítko se ukáže jako „brzy“.
   stripeLinks: {
     1: "",
@@ -31,6 +35,11 @@ window.MAZAN_CONFIG = {
     { id: "a1cL5bdpW78", title: "Bone in Action" },
     { id: "d8cW6qL9z1c", title: "Spiked Club in Action" },
   ],
+
+  // Žebříček hráčů (PHP skript na hostingu – nahraj složku web/api/ na mazanage.cz/api/).
+  leaderboardApi: "https://mazanage.cz/api/zebricek.php",
+  // Počítadlo spuštění dema (cíl 1 000 000) – stejný hosting, demo samo zapíše spuštění.
+  demoCounterApi: "https://mazanage.cz/api/pocitadlo.php",
 
   // Vydání hry – odpočet na stránce.
   releaseDate: "2026-12-31T23:59:59+01:00",
