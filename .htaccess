@@ -5,6 +5,8 @@ AddCharset utf-8 .html .css .js .txt .xml .json
 AddType image/webp .webp
 AddType text/javascript .js
 AddType application/wasm .wasm
+AddType font/woff2 .woff2
+AddType font/woff .woff
 
 # HTTPS: až bude v administraci hostingu zapnutý certifikát Let's Encrypt, odkomentuj 3 řádky níže
 # (přesměruje http:// na https://).
@@ -26,6 +28,7 @@ AddType application/wasm .wasm
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType image/png "access plus 30 days"
   ExpiresByType text/css "access plus 30 days"

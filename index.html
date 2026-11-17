@@ -7,7 +7,7 @@
      CSP: vlastní soubory, Google Fonts, náhledy a přehrávač YouTube (nocookie), formulář na Formspree.
      Bez upgrade-insecure-requests: na hostingu bez platného HTTPS by se CSS a JS nenačetly.
      Verze s Google Tag Managerem (klíč "gtm" v lang JSON) má v CSP navíc domény Googlu – skládá navrh/web_build.py. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io https://mazanage.cz; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src https://formspree.io https://mazanage.cz; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>Mazan Age – Prehistoric 2D Platformer Game | Coming 2026</title>
@@ -144,9 +144,9 @@
 <link rel="preload" href="assets/hero_bg3.jpg" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Lilita+One&amp;family=Nunito:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Lilita+One&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&amp;display=swap&amp;text=%F0%9F%87%A8%F0%9F%87%BF%F0%9F%87%B8%F0%9F%87%B0%F0%9F%87%BA%F0%9F%87%B8%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%A8%F0%9F%87%A6%F0%9F%87%A6%F0%9F%87%BA%F0%9F%87%AE%F0%9F%87%AA%F0%9F%87%B3%F0%9F%87%BF%F0%9F%87%A9%F0%9F%87%AA%F0%9F%87%A6%F0%9F%87%B9%F0%9F%87%B5%F0%9F%87%B1%F0%9F%87%AB%F0%9F%87%B7%F0%9F%87%AA%F0%9F%87%B8%F0%9F%87%AE%F0%9F%87%B9%F0%9F%87%B3%F0%9F%87%B1%F0%9F%87%B8%F0%9F%87%AA%F0%9F%87%AF%F0%9F%87%B5%F0%9F%87%A7%F0%9F%87%B7%F0%9F%87%AE%F0%9F%87%B3%F0%9F%87%B7%F0%9F%87%BA%F0%9F%87%A7%F0%9F%87%BE%F0%9F%87%B0%F0%9F%87%BF%F0%9F%87%BA%F0%9F%87%BF" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=b7479473">
+<link rel="stylesheet" href="css/style.css?v=4914032c">
 </head>
 <body>
 
@@ -416,8 +416,8 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="js/config.js?v=b7479473" defer></script>
-<script src="js/sprites.js?v=b7479473" defer></script>
-<script type="module" src="js/main.js?v=b7479473"></script>
+<script src="js/config.js?v=4914032c" defer></script>
+<script src="js/sprites.js?v=4914032c" defer></script>
+<script type="module" src="js/main.js?v=4914032c"></script>
 </body>
 </html>
