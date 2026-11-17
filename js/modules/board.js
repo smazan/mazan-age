@@ -23,10 +23,19 @@ function demoCounter() {
   fetch(api, { cache: "no-store" })
     .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
     .then((d) => {
-      const n = Number(d.count) || 0;
-      const goal = Number(d.goal) || 1000000;
-      document.getElementById("demo-bar").style.width = Math.max(0.5, Math.min(100, (n / goal) * 100)) + "%";
-      document.getElementById("demo-count-text").textContent = t("demo_count").replace("{n}", n.toLocaleString()).replace("{goal}", goal.toLocaleString());
+      // „Už hrálo [0][0][0][1][2][3] hráčů“ – 6 míst jako počítadlo
+      const n = Math.max(0, Math.min(999999, Number(d.count) || 0));
+      const [before, after] = t("demo_count").split("{n}");
+      box.textContent = "";
+      box.append(before || "");
+      const digits = document.createElement("span");
+      digits.className = "hero__digits";
+      for (const ch of String(n).padStart(6, "0")) {
+        const s = document.createElement("span");
+        s.textContent = ch;
+        digits.appendChild(s);
+      }
+      box.append(digits, after || "");
       box.hidden = false;
     })
     .catch(() => {});   // bez počítadla se nic neukáže

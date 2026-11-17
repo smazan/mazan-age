@@ -86,7 +86,7 @@ export const T = {
  "board_nick": "Player",
  "board_score": "Score",
  "board_pct": "Progress",
- "demo_count": "Demo played {n} times · goal {goal}",
+ "demo_count": "Already played by {n} players",
  "tip_any": "Any amount",
  "tip_soon": "Payments open very soon – thank you for your patience!",
  "upcoming": {
